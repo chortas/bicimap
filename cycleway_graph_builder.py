@@ -11,7 +11,7 @@ class CyclewayGraphBuilder(Graph):
   """
   Class that creates a graph that contains each street of the city.
   - nodes: each corner of the city
-  - edges: they will exist if it's posible to get from a corner to the other in bike
+  - edges: they will exist if it's posible to get from a corner to the other in bike and via cycleway
   """
   def __init__(self):
     self.configure()
