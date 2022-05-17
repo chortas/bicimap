@@ -1,43 +1,39 @@
 import osmnx as ox
-from geopy.geocoders import Nominatim
 import networkx as nx
-from itertools import islice
+from utils import *
 
-'''
-Auxiliary functions. TODO: move to utils folder
-'''
-
-def k_shortest_paths(G, source, target, k, weight=None):
-  return list(islice(nx.shortest_simple_paths(G, source, target, weight=weight), k))
-
-def get_coordinates(location):
-  locator = Nominatim(user_agent = "BiciMap")
-  location_geocoded = locator.geocode(location)
-  return (location_geocoded.latitude, location_geocoded.longitude)
+N_PATHS = 2
 
 class PathProcessor:
+  def __init__(self, bicycle_graph, cycleway_graph, surface_graph, criteria_comparator):
+    self.bicycle_graph = bicycle_graph
+    self.cycleway_graph = cycleway_graph
+    self.surface_graph = surface_graph
+    self.criteria_comparator = criteria_comparator
 
-  def save_path(self, origin, destination, optimizer, file_name, graph, full_graph):
+  def save_path(self, origin, destination, optimizer, file_name):
     origin_location_coordinates = get_coordinates(origin)
     dest_location_coordinates = get_coordinates(destination)
 
-    origin_node = ox.get_nearest_node(graph, origin_location_coordinates)
-    dest_node = ox.get_nearest_node(graph, dest_location_coordinates)
+    # Using bicycle_graph since it's the most complete graph
+    # It should always be possible to obtain a path
+    origin_node = ox.get_nearest_node(self.bicycle_graph, origin_location_coordinates)
+    dest_node = ox.get_nearest_node(self.bicycle_graph, dest_location_coordinates)
 
-    shortest_routes = []
+    graph_aux = nx.DiGraph(self.bicycle_graph)
+    shortest_routes = k_shortest_paths(graph_aux, origin_node, dest_node, N_PATHS, weight=optimizer)
+    
+    cycleway_comparisons = process_comparisons(self.cycleway_graph, shortest_routes)
+    self.criteria_comparator.compare_alternative(cycleway_comparisons, "cycleway", N_PATHS)
 
-    try:
-      shortest_route = nx.shortest_path(graph, origin_node, dest_node, weight=optimizer)
-      shortest_routes.append(shortest_route)
-    except:
-      graph_aux = nx.DiGraph(full_graph)
-      shortest_routes = k_shortest_paths(graph_aux,
-                                  origin_node,
-                                  dest_node,
-                                  10,
-                                  weight=optimizer)
-    finally:
-      for i in range(len(shortest_routes)):
-        route = shortest_routes[i]
-        shortest_route_map = ox.plot_route_folium(full_graph, route)
-        shortest_route_map.save(str(i) + file_name)
+    surface_comparisons = process_comparisons(self.surface_graph, shortest_routes)
+    self.criteria_comparator.compare_alternative(surface_comparisons, "surface", N_PATHS)
+
+    best_route = self.criteria_comparator.get_best_route()
+    print(f"The best route given all comparions is: {best_route}")
+
+    shortest_route_map = ox.plot_route_folium(self.bicycle_graph, shortest_routes[best_route])
+    shortest_route_map.save(file_name)
+
+    shortest_route_map = ox.plot_route_folium(self.bicycle_graph, shortest_routes[1])
+    shortest_route_map.save("aber.html")

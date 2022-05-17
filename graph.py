@@ -9,7 +9,7 @@ class Graph:
   def __init__(self, graph):
     self.graph = graph
     self.__fix_two_way_cycleways()
-    self.plot()
+    #self.plot()
 
   def configure(self):
     useful_tags = ox.settings.useful_tags_way + ['cycleway', 'bicycle', 'oneway:bicycle', 'surface']
@@ -25,7 +25,6 @@ class Graph:
 
     self.graph.add_edges_from(edges_to_add)
     
-
   def plot(self):
     return ox.plot.plot_graph(self.graph, bgcolor='#c0c2c2', node_color='#f0ede6', node_size=5, edge_color='#0cc7b4', edge_linewidth=1,save=True)
 
