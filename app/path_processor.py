@@ -2,7 +2,7 @@ import osmnx as ox
 import networkx as nx
 from utils import *
 
-N_PATHS = 2
+N_PATHS = 100
 
 class PathProcessor:
   def __init__(self, bicycle_graph, cycleway_graph, surface_graph, criteria_comparator):

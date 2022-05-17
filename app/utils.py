@@ -28,9 +28,9 @@ def process_comparisons(graph, routes):
   route_pairs = sorted(map(sorted, combinations(set(routes_by_index), 2)))
   for pair in route_pairs:
     if results[pair[0]] > results[pair[1]]:
-      comparisons[tuple(pair)] = floor(results[pair[0]] / results[pair[1]])
+      comparisons[tuple(pair)] = results[pair[0]] / results[pair[1]]
     else:
-      comparisons[tuple(pair)] = 1 / floor(results[pair[1]] / results[pair[0]])
+      comparisons[tuple(pair)] = 1 / (results[pair[1]] / results[pair[0]])
 
   print(f"Pairs: {route_pairs}")
   print(f"Comparisons: {comparisons}")

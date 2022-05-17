@@ -2,7 +2,9 @@ import ahpy
 
 # For now we will only compare cycleways against not pavimented paths.
 # TODO: add comparison with time and length criteria
-IA = {2: 0, 3: 0.58, 4: 0.90, 5: 1.12, 6: 1.24, 7: 1.32, 8: 1.41, 9: 1.45}
+IA = {2: 0.0, 3: 0.4914, 4: 0.8286, 5: 1.0591, 6: 1.1797, 7: 1.2519, 8: 1.3171, 9: 1.3733, 10: 1.4055, 11: 1.4213, 12: 1.4497,
+13: 1.4643, 14: 1.4822, 15: 1.4969, 16: 1.5078, 17: 1.5153, 18: 1.5262, 19: 1.5313, 20: 1.5371, 25: 1.5619, 30: 1.5772,
+40: 1.5976, 50: 1.6102, 60: 1.6178, 70: 1.6237, 80: 1.6277, 90: 1.6213, 100: 1.6339}
 class CriteriaComparator:
   def __init__(self):
     self.alternatives = []
@@ -19,7 +21,7 @@ class CriteriaComparator:
     return max(results, key=(lambda key: results[key]))
 
   def __compare(self, comparisons, name, n_comparisons):
-    results = ahpy.Compare(name=name, comparisons=comparisons, precision=3, random_index='saaty')
+    results = ahpy.Compare(name=name, comparisons=comparisons, precision=3, random_index='dd')
     if (not self.__is_consistent(results, n_comparisons)):
       raise Exception("Data provided is not consistent")
     return results

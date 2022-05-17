@@ -6,7 +6,7 @@ from surface_graph_builder import *
 from criteria_comparator import *
 from path_processor import *
 
-class TestCycleway:
+class TestPathProcessor:
   def setup_method(self, method):
     """ setup any state tied to the execution of the given method in a
     class.  setup_method is invoked for every test method of a class.
@@ -24,3 +24,21 @@ class TestCycleway:
     path_processor = PathProcessor(self.bicycle_graph, self.cycleway_graph, self.surface_graph, self.criteria_comparator)
     path = path_processor.get_path("Julian Alvarez, 400, Buenos Aires", "Julian Alvarez, 800, Buenos Aires", "length")
     assert len(path) == 9
+
+  def test_cycleway_path_complex(self):
+    """Given a known path it should return an appropiate path"""
+
+    comparisons = {('cycleway', 'surface'): 9}
+    self.criteria_comparator.compare_criteria(comparisons, 'Criteria', 2)
+    path_processor = PathProcessor(self.bicycle_graph, self.cycleway_graph, self.surface_graph, self.criteria_comparator)
+    path = path_processor.get_path("Santos Dumont, 3294, Buenos Aires", "Lavalleja, 701 Buenos Aires", "length")
+    assert len(path) == 32
+
+  def test_surface_path_complex(self):
+    """Given a known path it should return an appropiate path"""
+
+    comparisons = {('cycleway', 'surface'): 1/9}
+    self.criteria_comparator.compare_criteria(comparisons, 'Criteria', 2)
+    path_processor = PathProcessor(self.bicycle_graph, self.cycleway_graph, self.surface_graph, self.criteria_comparator)
+    path = path_processor.get_path("Santos Dumont, 3294, Buenos Aires", "Lavalleja, 701 Buenos Aires", "length")
+    assert len(path) == 46
