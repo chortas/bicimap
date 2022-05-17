@@ -11,7 +11,7 @@ class PathProcessor:
     self.surface_graph = surface_graph
     self.criteria_comparator = criteria_comparator
 
-  def save_path(self, origin, destination, optimizer, file_name):
+  def get_path(self, origin, destination, optimizer):
     origin_location_coordinates = get_coordinates(origin)
     dest_location_coordinates = get_coordinates(destination)
 
@@ -31,9 +31,6 @@ class PathProcessor:
 
     best_route = self.criteria_comparator.get_best_route()
     print(f"The best route given all comparions is: {best_route}")
+    print(f"Route: shortest_routes{shortest_routes[best_route]}")
 
-    shortest_route_map = ox.plot_route_folium(self.bicycle_graph, shortest_routes[best_route])
-    shortest_route_map.save(file_name)
-
-    shortest_route_map = ox.plot_route_folium(self.bicycle_graph, shortest_routes[1])
-    shortest_route_map.save("aber.html")
+    return shortest_routes[best_route]

@@ -15,4 +15,6 @@ surface_graph = SurfaceGraphBuilder().build()
 path_processor = PathProcessor(bicycle_graph, cycleway_graph, surface_graph, criteria_comparator)
 
 #PathProcessor().save_path("Santos Dumont, 3294, Buenos Aires", "Santos Dumont, 3693, Buenos Aires", "length", "surface_test.html")
-path_processor.save_path("Julian Alvarez, 400, Buenos Aires", "Julian Alvarez, 800, Buenos Aires", "length", "cycleway.html")
+path = path_processor.get_path("Julian Alvarez, 400, Buenos Aires", "Julian Alvarez, 800, Buenos Aires", "length")
+shortest_route_map = ox.plot_route_folium(bicycle_graph, path)
+shortest_route_map.save("cycleway.html")

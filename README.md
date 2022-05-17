@@ -5,11 +5,17 @@
 ## Instalar dependencias
 
 ```
-./install.sh
+make install
 ```
 
 ## Correr programa
 
 ```
 python3 router.py
+```
+
+## Correr tests
+
+```
+make test
 ```
