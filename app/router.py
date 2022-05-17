@@ -4,9 +4,16 @@ from bicycle_graph_builder import *
 from path_processor import *
 from criteria_comparator import *
 
-comparisons = {('cycleway', 'surface'): 1/9}
-criteria_comparator = CriteriaComparator()
-criteria_comparator.compare_criteria(comparisons, 'Criteria', 2)
+'''
+If a criteria is not relevant it isn't added to the initial comparisons.
+If it is relevant, it should be compared with the rest.
+Special case: time vs length, the more relevant should be the weight to get the paths.
+'''
+
+comparison_criteria = ['cycleway', 'surface', 'length']
+comparisons = {('cycleway', 'surface'): 5, ('cycleway', 'length'): 4, ('surface', 'length'): 3}
+criteria_comparator = CriteriaComparator(comparison_criteria)
+criteria_comparator.compare_criteria(comparisons, 'Criteria', 3)
 
 bicycle_graph = BicycleGraphBuilder().build()
 cycleway_graph = CyclewayGraphBuilder().build()

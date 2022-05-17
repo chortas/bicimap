@@ -23,11 +23,13 @@ class PathProcessor:
     graph_aux = nx.DiGraph(self.bicycle_graph)
     shortest_routes = k_shortest_paths(graph_aux, origin_node, dest_node, N_PATHS, weight=optimizer)
     
-    cycleway_comparisons = process_comparisons(self.cycleway_graph, shortest_routes)
-    self.criteria_comparator.compare_alternative(cycleway_comparisons, "cycleway", N_PATHS)
+    if self.criteria_comparator.is_criteria("cycleway"):
+      cycleway_comparisons = process_comparisons(self.cycleway_graph, shortest_routes)
+      self.criteria_comparator.compare_alternative(cycleway_comparisons, "cycleway", N_PATHS)
 
-    surface_comparisons = process_comparisons(self.surface_graph, shortest_routes)
-    self.criteria_comparator.compare_alternative(surface_comparisons, "surface", N_PATHS)
+    if self.criteria_comparator.is_criteria("surface"):
+      surface_comparisons = process_comparisons(self.surface_graph, shortest_routes)
+      self.criteria_comparator.compare_alternative(surface_comparisons, "surface", N_PATHS)
 
     best_route = self.criteria_comparator.get_best_route()
     print(f"The best route given all comparions is: {best_route}")
