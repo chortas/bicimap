@@ -8,8 +8,8 @@ class CriteriaComparator:
     self.alternatives = []
     self.comparison_criteria = comparison_criteria
 
-  def compare_criteria(self, comparisons, name, n_comparisons):
-    self.criteria = self.__compare(comparisons, name, n_comparisons)
+  def compare_criteria(self, comparisons, name):
+    self.criteria = self.__compare(comparisons, name, len(self.comparison_criteria))
 
   def compare_alternative(self, comparisons, name, n_comparisons):
     self.alternatives.append(self.__compare(comparisons, name, n_comparisons))
@@ -29,7 +29,7 @@ class CriteriaComparator:
     return results
 
   def __is_consistent(self, results, n_comparisons):
-    print(f"Target weights: {results.target_weights}")
-    print(f"Consistency ratio: {results.consistency_ratio}")
+    #print(f"Target weights: {results.target_weights}")
+    #print(f"Consistency ratio: {results.consistency_ratio}")
     return results.consistency_ratio <= IA[n_comparisons]
     

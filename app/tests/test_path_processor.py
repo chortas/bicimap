@@ -21,7 +21,7 @@ class TestPathProcessor:
 
     criteria_comparator = CriteriaComparator(['cycleway', 'surface'])
     comparisons = {('cycleway', 'surface'): 9}
-    criteria_comparator.compare_criteria(comparisons, 'Criteria', 2)
+    criteria_comparator.compare_criteria(comparisons, 'Criteria')
 
     path_processor = PathProcessor(self.bicycle_graph, self.cycleway_graph, self.surface_graph, criteria_comparator)
     path = path_processor.get_path("Julian Alvarez, 400, Buenos Aires", "Julian Alvarez, 800, Buenos Aires", "length")
@@ -32,7 +32,7 @@ class TestPathProcessor:
 
     criteria_comparator = CriteriaComparator(['cycleway', 'surface'])
     comparisons = {('cycleway', 'surface'): 9}
-    criteria_comparator.compare_criteria(comparisons, 'Criteria', 2)
+    criteria_comparator.compare_criteria(comparisons, 'Criteria')
 
     path_processor = PathProcessor(self.bicycle_graph, self.cycleway_graph, self.surface_graph, criteria_comparator)
     path = path_processor.get_path("Santos Dumont, 3294, Buenos Aires", "Lavalleja, 701 Buenos Aires", "length")
@@ -43,8 +43,19 @@ class TestPathProcessor:
 
     criteria_comparator = CriteriaComparator(['cycleway', 'surface'])
     comparisons = {('cycleway', 'surface'): 1/9}
-    criteria_comparator.compare_criteria(comparisons, 'Criteria', 2)
+    criteria_comparator.compare_criteria(comparisons, 'Criteria')
     
     path_processor = PathProcessor(self.bicycle_graph, self.cycleway_graph, self.surface_graph, criteria_comparator)
     path = path_processor.get_path("Santos Dumont, 3294, Buenos Aires", "Lavalleja, 701 Buenos Aires", "length")
     assert len(path) == 46
+
+  def test_length_path_complex(self):
+    """Given a known path it should return an appropiate path"""
+
+    criteria_comparator = CriteriaComparator(['cycleway', 'surface', 'length'])
+    comparisons = {('length', 'surface'): 5, ('length', 'cycleway'): 5, ('cycleway', 'surface'): 1}
+    criteria_comparator.compare_criteria(comparisons, 'Criteria')
+    
+    path_processor = PathProcessor(self.bicycle_graph, self.cycleway_graph, self.surface_graph, criteria_comparator)
+    path = path_processor.get_path("Lavalleja, 840, Buenos Aires", "Acoyte, 235 Buenos Aires", "length")
+    assert len(path) == 41
