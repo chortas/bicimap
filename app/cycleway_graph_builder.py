@@ -1,5 +1,5 @@
 import osmnx as ox
-from graph import *
+from graph_builder import *
 import networkx as nx
 
 PLACE = 'Autonomous City of Buenos Aires, Argentina'
@@ -7,7 +7,7 @@ NETWORK_TYPE = 'bike'
 BICYCLE_CUSTOM_FILTER = '["bicycle"~"designated"]'
 HIGHWAY_CUSTOM_FILTER = '["highway"~"cycleway"]'
 
-class CyclewayGraphBuilder(Graph):
+class CyclewayGraphBuilder(GraphBuilder):
   """
   Class that creates a graph that contains each street of the city.
   - nodes: each corner of the city
@@ -16,7 +16,7 @@ class CyclewayGraphBuilder(Graph):
   def __init__(self):
     self.configure()
     graph = self.__create_graph()
-    Graph.__init__(self, graph)
+    GraphBuilder.__init__(self, graph)
 
   def __create_graph(self):
     bicycle_graph = ox.graph.graph_from_place(PLACE, network_type=NETWORK_TYPE, simplify=False, custom_filter=BICYCLE_CUSTOM_FILTER, 
