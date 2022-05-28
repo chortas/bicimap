@@ -36,7 +36,7 @@ class TestPathProcessor:
 
     path_processor = PathProcessor(self.bicycle_graph, self.cycleway_graph, self.surface_graph, criteria_comparator)
     path = path_processor.get_path("Santos Dumont, 3294, Buenos Aires", "Lavalleja, 701 Buenos Aires", "length")
-    assert len(path) == 32
+    assert len(path) == 47
 
   def test_surface_path_complex(self):
     """Given a known path it should return an appropiate path"""
@@ -58,4 +58,4 @@ class TestPathProcessor:
     
     path_processor = PathProcessor(self.bicycle_graph, self.cycleway_graph, self.surface_graph, criteria_comparator)
     path = path_processor.get_path("Lavalleja, 840, Buenos Aires", "Acoyte, 235 Buenos Aires", "length")
-    assert len(path) == 41
+    assert len(path) == 66

@@ -1,9 +1,10 @@
 from itertools import islice, combinations
+from typing import Dict, List, Tuple
 from geopy.geocoders import Nominatim
 import osmnx as ox
 import networkx as nx
 
-def k_shortest_paths(G, source, target, k, weight=None):
+def k_shortest_paths(G, source, target, k, weight=None) -> List[List[int]]:
   return list(islice(nx.shortest_simple_paths(G, source, target, weight=weight), k))
 
 def get_coordinates(location):
@@ -21,9 +22,9 @@ def calculate_measurable_comparison(graph, route):
   length = 0
   for u, v in zip(route, route[1:]):
     length += graph.get_edge_data(u, v)[0]['length']
-  return length
+  return 1 / length
 
-def process_comparisons(graph, routes, function):
+def process_comparisons(graph, routes, function) -> Dict[Tuple[int, int], int]:
   results = {}
   comparisons = {}
   routes_by_index = []
@@ -34,8 +35,5 @@ def process_comparisons(graph, routes, function):
   route_pairs = sorted(map(sorted, combinations(set(routes_by_index), 2)))
   for pair in route_pairs:
     comparisons[tuple(pair)] = 1 / (results[pair[1]] / results[pair[0]])
-
-  #print(f"Pairs: {route_pairs}")
-  #print(f"Comparisons: {comparisons}")
 
   return comparisons
