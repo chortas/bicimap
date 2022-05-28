@@ -61,12 +61,12 @@ class PathProcessor:
       compared_alternatives.append(self.criteria_comparator.compare_alternative(surface_comparisons, "surface", len(alternatives)))
 
     if self.criteria_comparator.is_criteria("length"):
-      length_comparisons = process_comparisons(self.bicycle_graph, alternatives, calculate_measurable_comparison)
+      length_comparisons = process_comparisons(self.bicycle_graph, alternatives, calculate_measurable_comparison, 'length')
       compared_alternatives.append(self.criteria_comparator.compare_alternative(length_comparisons, "length", len(alternatives)))
 
-    '''if self.criteria_comparator.is_criteria("time"):
-      time_comparisons = process_comparisons(self.bicycle_graph, shortest_routes, calculate_measurable_comparison)
-      self.criteria_comparator.compare_alternative(time_comparisons, "time", N_PATHS)'''
+    if self.criteria_comparator.is_criteria("travel_time"):
+      time_comparisons = process_comparisons(self.bicycle_graph, alternatives, calculate_measurable_comparison, 'travel_time')
+      compared_alternatives.append(self.criteria_comparator.compare_alternative(time_comparisons, "travel_time", len(alternatives)))
 
     best_route = self.criteria_comparator.get_best_route(compared_alternatives)
 
