@@ -24,6 +24,11 @@ class CriteriaComparator:
   def get_max_IC(self):
     return max(IA.keys())
 
+  def get_optimizer(self):
+    travel_time_weigth = self.criteria.target_weights.get('travel_time', 0)
+    length_weigth = self.criteria.target_weights.get('length', 0)
+    return 'travel_time' if travel_time_weigth > length_weigth else 'length' 
+
   def __compare(self, comparisons, name, n_comparisons):
     results = ahpy.Compare(name=name, comparisons=comparisons, precision=3, random_index='saaty') 
     if (not self.__is_consistent(results, n_comparisons)):

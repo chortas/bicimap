@@ -11,7 +11,9 @@ class PathProcessor:
     self.surface_graph = surface_graph
     self.criteria_comparator = criteria_comparator
 
-  def get_path(self, origin, destination, optimizer):
+  def get_path(self, origin, destination):
+    optimizer = self.criteria_comparator.get_optimizer()
+
     origin_location_coordinates = get_coordinates(origin)
     dest_location_coordinates = get_coordinates(destination)
 
