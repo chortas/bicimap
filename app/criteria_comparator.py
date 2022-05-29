@@ -10,7 +10,6 @@ class CriteriaComparator:
     for comparison in comparisons:
         self.comparison_criteria.add(comparison[0])
         self.comparison_criteria.add(comparison[1])
-    print(f"Comparisons: {self.comparison_criteria}")
     self.criteria = self.__compare(comparisons, name, len(self.comparison_criteria))
 
   def compare_alternative(self, comparisons, name, n_comparisons):

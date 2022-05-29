@@ -20,9 +20,10 @@ class GraphService(object):
         comparisons[tuple(elemen.split(','))] = body[elemen]
       self.criteria_comparator.compare_criteria(comparisons, 'Criteria')
 
-    def get_path(self):
-        # TODO: convert data
-        path = self.path_processor.get_path("Lavalleja, 840, Buenos Aires", "Acoyte, 235 Buenos Aires", self.criteria_comparator)
+    def get_path(self, body):
+        origin = body['origin']
+        destination = body['destination']
+        path = self.path_processor.get_path(origin, destination, self.criteria_comparator)
         print(len(path))
         shortest_route_map = ox.plot_route_folium(self.bicycle_graph, path)
         shortest_route_map.save("cycleway.html")

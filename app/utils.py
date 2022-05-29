@@ -22,7 +22,6 @@ def calculate_measurable_comparison(graph, route, parameter):
   measure = 0
   for u, v in zip(route, route[1:]):
     measure += graph.get_edge_data(u, v)[0][parameter]
-  #print(f"Measure: {measure} and parameter: {parameter}")
   return 1 / measure
 
 def process_comparisons(graph, routes, function, parameter=None) -> Dict[Tuple[int, int], int]:
