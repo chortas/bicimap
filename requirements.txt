@@ -4,3 +4,5 @@ geopy
 folium
 ahpy
 pytest
+Flask
+flask-cors

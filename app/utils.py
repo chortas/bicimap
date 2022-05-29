@@ -35,8 +35,6 @@ def process_comparisons(graph, routes, function, parameter=None) -> Dict[Tuple[i
   
   route_pairs = sorted(map(sorted, combinations(set(routes_by_index), 2)))
   for pair in route_pairs:
-    print(f"Ayuda1: {results[pair[0]]}")
-    print(f"Ayuda2: {results[pair[1]]}")
     result_pair_1 = results[pair[1]] if results[pair[1]] != 0 else 0.000001
     result = results[pair[0]] / result_pair_1 if results[pair[0]] / result_pair_1 != 0 else 0.000001
     comparisons[tuple(pair)] = result

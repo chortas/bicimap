@@ -3,10 +3,14 @@ import ahpy
 IA = {2: 0.0, 3: 0.58, 4: 0.90, 5: 1.12, 6: 1.24, 7: 1.32, 8: 1.41, 9: 1.45}
 
 class CriteriaComparator:
-  def __init__(self, comparison_criteria):
-    self.comparison_criteria = comparison_criteria
+  def __init__(self):
+    self.comparison_criteria = set()
 
   def compare_criteria(self, comparisons, name):
+    for comparison in comparisons:
+        self.comparison_criteria.add(comparison[0])
+        self.comparison_criteria.add(comparison[1])
+    print(f"Comparisons: {self.comparison_criteria}")
     self.criteria = self.__compare(comparisons, name, len(self.comparison_criteria))
 
   def compare_alternative(self, comparisons, name, n_comparisons):
