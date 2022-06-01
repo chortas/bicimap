@@ -4,3 +4,5 @@ images/
 *.html
 *.txt
 __pycache__/
+front/node_modules
+
