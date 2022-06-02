@@ -1,12 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
-import Button from '@mui/material/Button';
+import Home from './screens/Home';
 
 function App() {
   return (
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
+    <Home />
   );
 }
 
