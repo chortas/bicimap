@@ -3,24 +3,24 @@ import { Box, Slider, Typography, Container, Stack } from "@mui/material";
 import useStyles from "./styles";
 import CustomDialog from "../CustomDialog";
 
-function marks(criteria1, criteria2) {
+function marks(mark1, mark2) {
   return [
     {
       value: -9,
-      label: `${criteria1} es extremadamente menos importante que ${criteria2.toLowerCase()}`,
+      label: mark1,
     },
     {
       value: 1,
-      label: "Son igualmente importantes",
+      label: "Me da igual ir por bicisenda que ir por un camino no empedrado",
     },
     {
       value: 9,
-      label: `${criteria1} es extremadamente menos importante que ${criteria2.toLowerCase()}`,
+      label: mark2,
     },
   ];
 }
 
-export default function DiscreteSlider({ onChange, criteria1, criteria2 }) {
+export default function DiscreteSlider({ onChange, title, mark1, mark2 }) {
   const classes = useStyles();
 
   return (
@@ -32,7 +32,7 @@ export default function DiscreteSlider({ onChange, criteria1, criteria2 }) {
           component="div"
           className={classes.title}
         >
-          Comparación entre {criteria1} y {criteria2}
+          {title}
         </Typography>
         <CustomDialog />
       </Stack>
@@ -48,7 +48,7 @@ export default function DiscreteSlider({ onChange, criteria1, criteria2 }) {
           defaultValue={1}
           onChange={onChange}
           step={1}
-          marks={marks(criteria1, criteria2)}
+          marks={marks(mark1, mark2)}
           min={-9}
           max={9}
           width={10}

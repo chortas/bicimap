@@ -1,9 +1,5 @@
 import React from "react";
 import {
-  Avatar,
-  Button,
-  CssBaseline,
-  TextField,
   Typography,
   Container,
 } from "@mui/material";
@@ -15,16 +11,17 @@ export default function Home() {
 
   return (
     <Container>
-      <CssBaseline />
-      <div className={classes.paper}>
-        <DiscreteSlider
-          onChange={(event) => {
-            console.log(event.target.value);
-          }}
-          criteria1="Bicisenda"
-          criteria2="Camino empedrado"
-        />
-      </div>
+      <Typography variant="h3" gutterBottom component="div" className={classes.title}>
+        Configuración
+      </Typography>
+      <DiscreteSlider
+        onChange={(event) => {
+          console.log(event.target.value);
+        }}
+        title="Comparación entre ir por bicisenda e ir por un camino que no esté empedrado"
+        mark1="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por bicisenda"
+        mark2="Prefiero ampliamente ir por bicisenda antes que ir por un camino que no esté empedrado"
+      />
     </Container>
   );
 }
