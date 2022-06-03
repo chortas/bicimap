@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Typography, Container } from "@mui/material";
 import useStyles from "./styles";
 import DiscreteSlider from "../../components/DiscreteSlider";
+import CriteriaForm from "../../components/CriteriaForm";
 
-export default function Home({ cycleway, surface, length, time }) {
+export default function Home() {
   const classes = useStyles();
+
+  const [cycleway, setCycleway] = useState(true);
+  const [surface, setSurface] = useState(true);
+  const [length, setLength] = useState(true);
+  const [time, setTime] = useState(true);
 
   return (
     <Container>
@@ -15,6 +21,28 @@ export default function Home({ cycleway, surface, length, time }) {
         className={classes.title}
       >
         Configuración
+      </Typography>
+      <Typography
+        variant="h5"
+        gutterBottom
+        component="div"
+        className={classes.title}
+      >
+        Criterios a tener en cuenta
+      </Typography>
+      <CriteriaForm
+        setCycleway={setCycleway}
+        setSurface={setSurface}
+        setLength={setLength}
+        setTime={setTime}
+      />
+      <Typography
+        variant="h5"
+        gutterBottom
+        component="div"
+        className={classes.comparisons}
+      >
+        Comparaciones
       </Typography>
       {cycleway && surface ? (
         <DiscreteSlider
