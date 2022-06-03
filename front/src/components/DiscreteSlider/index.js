@@ -1,7 +1,6 @@
 import * as React from "react";
-import { Box, Slider, Typography, Container, Stack } from "@mui/material";
+import { Box, Slider, Typography, Container } from "@mui/material";
 import useStyles from "./styles";
-import CustomDialog from "../CustomDialog";
 
 function marks(mark1, mark2, mark3) {
   return [
@@ -20,22 +19,25 @@ function marks(mark1, mark2, mark3) {
   ];
 }
 
-export default function DiscreteSlider({ onChange, title, mark1, mark2, mark3 }) {
+export default function DiscreteSlider({
+  onChange,
+  title,
+  mark1,
+  mark2,
+  mark3,
+}) {
   const classes = useStyles();
 
   return (
     <Container className={classes.container}>
-      <Stack direction="row" spacing={1}>
-        <Typography
-          variant="h6"
-          gutterBottom
-          component="div"
-          className={classes.title}
-        >
-          {title}
-        </Typography>
-        <CustomDialog />
-      </Stack>
+      <Typography
+        variant="h6"
+        gutterBottom
+        component="div"
+        className={classes.title}
+      >
+        {title}
+      </Typography>
       <Box sx={{ width: 600 }}>
         <Slider
           sx={{

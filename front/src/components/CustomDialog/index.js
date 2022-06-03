@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 
-export default function AlertDialog() {
+export default function AlertDialog({content}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -37,7 +37,7 @@ export default function AlertDialog() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Se busca determinar la importancia de un criterio por sobre otro para poder encontrar el camino que más se ajuste a sus preferencias.
+            {content}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

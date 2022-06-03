@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Typography, Container } from "@mui/material";
+import { Typography, Container, Stack } from "@mui/material";
 import useStyles from "./styles";
 import DiscreteSlider from "../../components/DiscreteSlider";
 import CriteriaForm from "../../components/CriteriaForm";
+import CustomDialog from "../../components/CustomDialog";
 
 export default function Home() {
   const classes = useStyles();
@@ -22,28 +23,35 @@ export default function Home() {
       >
         Configuración
       </Typography>
-      <Typography
-        variant="h5"
-        gutterBottom
-        component="div"
-        className={classes.title}
-      >
-        Criterios a tener en cuenta
-      </Typography>
+
+      <Stack direction="row" spacing={1}>
+        <Typography
+          variant="h5"
+          gutterBottom
+          component="div"
+          className={classes.title}
+        >
+          Criterios a tener en cuenta
+        </Typography>
+        <CustomDialog content="Se busca seleccionar qué criterios tener en cuenta para calcular un camino." />
+      </Stack>
       <CriteriaForm
         setCycleway={setCycleway}
         setSurface={setSurface}
         setLength={setLength}
         setTime={setTime}
       />
-      <Typography
-        variant="h5"
-        gutterBottom
-        component="div"
-        className={classes.comparisons}
-      >
-        Comparaciones
-      </Typography>
+      <Stack direction="row" spacing={1}>
+        <Typography
+          variant="h5"
+          gutterBottom
+          component="div"
+          className={classes.comparisons}
+        >
+          Comparaciones
+        </Typography>
+        <CustomDialog content="Se busca determinar la importancia de un criterio por sobre otro para poder encontrar el camino que más se ajuste a sus preferencias." />
+      </Stack>
       {cycleway && surface ? (
         <DiscreteSlider
           onChange={(event) => {
