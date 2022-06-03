@@ -48,7 +48,13 @@ export default function DiscreteSlider({
           }}
           track={false}
           defaultValue={1}
-          onChange={onChange}
+          onChange={(event) =>
+            onChange(
+              event.target.value > 0
+                ? event.target.value
+                : 1 / Math.abs(event.target.value)
+            )
+          }
           step={1}
           marks={marks(mark1, mark2, mark3)}
           min={-9}

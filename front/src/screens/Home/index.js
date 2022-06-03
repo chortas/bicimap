@@ -13,6 +13,13 @@ export default function Home() {
   const [length, setLength] = useState(true);
   const [time, setTime] = useState(true);
 
+  const [cyclewaySurface, setCyclewaySurface] = useState(1);
+  const [cyclewayLength, setCyclewayLength] = useState(1);
+  const [cyclewayTime, setCyclewayTime] = useState(1);
+  const [surfaceLength, setSurfaceLength] = useState(1);
+  const [surfaceTime, setSurfaceTime] = useState(1);
+  const [lengthTime, setLengthTime] = useState(1);
+
   return (
     <Container>
       <Typography
@@ -54,9 +61,7 @@ export default function Home() {
       </Stack>
       {cycleway && surface ? (
         <DiscreteSlider
-          onChange={(event) => {
-            console.log(event.target.value);
-          }}
+          onChange={setCyclewaySurface}
           title="Comparación entre ir por bicisenda e ir por un camino que no esté empedrado"
           mark1="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por bicisenda"
           mark2="Me da igual ir por bicisenda que ir por un camino no empedrado"
@@ -67,9 +72,7 @@ export default function Home() {
       )}
       {cycleway && length ? (
         <DiscreteSlider
-          onChange={(event) => {
-            console.log(event.target.value);
-          }}
+          onChange={setCyclewayLength}
           title="Comparación entre ir por bicisenda e ir por un camino de menor distancia"
           mark1="Prefiero ampliamente ir por un camino de menor distancia antes que ir por bicisenda"
           mark2="Me da igual ir por bicisenda que ir por un camino de menor distancia"
@@ -80,9 +83,7 @@ export default function Home() {
       )}
       {cycleway && time ? (
         <DiscreteSlider
-          onChange={(event) => {
-            console.log(event.target.value);
-          }}
+          onChange={setCyclewayTime}
           title="Comparación entre ir por bicisenda e ir por un camino de menor tiempo de recorrido"
           mark1="Prefiero ampliamente ir por un camino de menor tiempo de recorrido antes que ir por bicisenda"
           mark2="Me da igual ir por bicisenda que ir por un camino de menor tiempo de recorrido"
@@ -93,9 +94,7 @@ export default function Home() {
       )}
       {surface && length ? (
         <DiscreteSlider
-          onChange={(event) => {
-            console.log(event.target.value);
-          }}
+          onChange={setSurfaceLength}
           title="Comparación entre ir por un camino que no esté empedrado e ir por un camino de menor distancia"
           mark1="Prefiero ampliamente ir por un camino de menor distancia antes que ir por un camino que no esté empedrado"
           mark2="Me da igual ir por un camino que no esté empedrado que ir por un camino de menor distancia"
@@ -106,9 +105,7 @@ export default function Home() {
       )}
       {surface && time ? (
         <DiscreteSlider
-          onChange={(event) => {
-            console.log(event.target.value);
-          }}
+          onChange={setSurfaceTime}
           title="Comparación entre ir por un camino que no esté empedrado e ir por un camino de menor tiempo de recorrido"
           mark1="Prefiero ampliamente ir por un camino de menor tiempo de recorrido antes que ir por un camino que no esté empedrado"
           mark2="Me da igual ir por un camino que no esté empedrado que ir por un camino de menor tiempo de recorrido"
@@ -119,9 +116,7 @@ export default function Home() {
       )}
       {length && time ? (
         <DiscreteSlider
-          onChange={(event) => {
-            console.log(event.target.value);
-          }}
+          onChange={setLengthTime}
           title="Comparación entre ir por un camino de menor distancia e ir por un camino de menor tiempo de recorrido"
           mark1="Prefiero ampliamente ir por un camino de menor tiempo de recorrido antes que ir por un camino de menor distancia"
           mark2="Me da igual ir por un camino de menor distancia que ir por un camino de menor tiempo de recorrido"
