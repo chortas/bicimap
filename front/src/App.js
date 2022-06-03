@@ -1,10 +1,8 @@
-import './App.css';
-import Home from './screens/Home';
+import "./App.css";
+import Home from "./screens/Home";
 
 function App() {
-  return (
-    <Home />
-  );
+  return <Home cycleway={true} surface={true} length={true} time={true} />;
 }
 
 export default App;

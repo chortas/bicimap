@@ -6,10 +6,12 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(5),
   },
   container: {
+    marginTop: theme.spacing(10),
     paddingLeft: "5px",
     marginLeft: "10px",
     width: "30px",
     height: "30px",
+    marginBottom: theme.spacing(20)
   },
 }));
 

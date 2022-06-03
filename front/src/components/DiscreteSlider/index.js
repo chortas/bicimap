@@ -3,7 +3,7 @@ import { Box, Slider, Typography, Container, Stack } from "@mui/material";
 import useStyles from "./styles";
 import CustomDialog from "../CustomDialog";
 
-function marks(mark1, mark2) {
+function marks(mark1, mark2, mark3) {
   return [
     {
       value: -9,
@@ -11,16 +11,16 @@ function marks(mark1, mark2) {
     },
     {
       value: 1,
-      label: "Me da igual ir por bicisenda que ir por un camino no empedrado",
+      label: mark2,
     },
     {
       value: 9,
-      label: mark2,
+      label: mark3,
     },
   ];
 }
 
-export default function DiscreteSlider({ onChange, title, mark1, mark2 }) {
+export default function DiscreteSlider({ onChange, title, mark1, mark2, mark3 }) {
   const classes = useStyles();
 
   return (
@@ -48,7 +48,7 @@ export default function DiscreteSlider({ onChange, title, mark1, mark2 }) {
           defaultValue={1}
           onChange={onChange}
           step={1}
-          marks={marks(mark1, mark2)}
+          marks={marks(mark1, mark2, mark3)}
           min={-9}
           max={9}
           width={10}
