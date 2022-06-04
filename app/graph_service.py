@@ -18,7 +18,7 @@ class GraphService(object):
       comparisons = {}
       for elemen in body:
         comparisons[tuple(elemen.split(','))] = body[elemen]
-      self.criteria_comparator.compare_criteria(comparisons, 'Criteria')
+      return self.criteria_comparator.compare_criteria(comparisons, 'Criteria')
 
     def get_path(self, body):
         origin = body['origin']

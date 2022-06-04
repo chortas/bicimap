@@ -29,6 +29,5 @@ export const getComparisonBody = (
   if (length && time) {
     body["length,travel_time"] = lengthTime;
   }
-  console.log(body);
   return body;
 };

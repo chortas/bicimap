@@ -7,11 +7,17 @@ class CriteriaComparator:
     self.comparison_criteria = set()
 
   def compare_criteria(self, comparisons, name):
+    print(f"Comparisons: {comparisons}")
     for comparison in comparisons:
         self.comparison_criteria.add(comparison[0])
         self.comparison_criteria.add(comparison[1])
-    self.criteria = self.__compare(comparisons, name, len(self.comparison_criteria))
-
+    results = self.__compare(comparisons, name)
+    if (not self.__is_consistent(results, len(self.comparison_criteria))):
+      print("estoy aca!")
+      return False
+    self.criteria = results
+    return True
+    
   def compare_alternative(self, comparisons, name, n_comparisons):
     return self.__compare(comparisons, name, n_comparisons)
 
@@ -32,11 +38,8 @@ class CriteriaComparator:
     length_weigth = self.criteria.target_weights.get('length', 0)
     return 'travel_time' if travel_time_weigth > length_weigth else 'length' 
 
-  def __compare(self, comparisons, name, n_comparisons):
-    results = ahpy.Compare(name=name, comparisons=comparisons, precision=3, random_index='saaty') 
-    if (not self.__is_consistent(results, n_comparisons)):
-      raise Exception("Data provided is not consistent")
-    return results
+  def __compare(self, comparisons, name):
+    return ahpy.Compare(name=name, comparisons=comparisons, precision=3, random_index='saaty') 
 
   def __is_consistent(self, results, n_comparisons):
     return results.consistency_ratio <= IA[n_comparisons]

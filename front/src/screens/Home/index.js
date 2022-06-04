@@ -4,6 +4,7 @@ import useStyles from "./styles";
 import DiscreteSlider from "../../components/DiscreteSlider";
 import CriteriaForm from "../../components/CriteriaForm";
 import CustomDialog from "../../components/CustomDialog";
+import CustomSnackBar from "../../components/CustomSnackBar";
 import { saveComparisons } from "../../services/BiciMapService";
 import { getComparisonBody } from "../../utils/comparison";
 
@@ -22,6 +23,8 @@ export default function Home() {
   const [surfaceTime, setSurfaceTime] = useState(1);
   const [lengthTime, setLengthTime] = useState(1);
 
+  const [openSnackBar, setOpenSnackBar] = useState(false);
+
   const onClickComparisons = useCallback(async () => {
     //setLoadingMediaServer(true);
     const body = getComparisonBody(
@@ -37,8 +40,9 @@ export default function Home() {
       time
     );
     const response = await saveComparisons(body);
-    //setMediaServerIsUp(response);
-    //setLoadingMediaServer(false);
+    if (response.status !== 201) {
+      setOpenSnackBar(true);
+    }
   }, [
     cycleway,
     surface,
@@ -157,13 +161,21 @@ export default function Home() {
       ) : (
         <div />
       )}
-      <Button
-        variant="outlined"
-        onClick={onClickComparisons}
-        className={classes.button}
-      >
-        Enviar
-      </Button>
+      <Stack direction="row" spacing={1}>
+        <Button
+          variant="outlined"
+          onClick={onClickComparisons}
+          className={classes.button}
+        >
+          Enviar
+        </Button>
+        <CustomSnackBar
+          open={openSnackBar}
+          setOpenSnackBar={setOpenSnackBar}
+          errorMessage="Las comparaciones no son consistentes. Recomendación: revisar si se da un caso donde se dice que el criterio A es más importante que el B, el criterio A es menos importante que el C y el criterio B es más importante que el C"
+          severity="error"
+        />
+      </Stack>
     </Container>
   );
 }
