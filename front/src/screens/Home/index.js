@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import { Typography, Container, Stack } from "@mui/material";
+import React, { useState, useCallback } from "react";
+import { Typography, Container, Stack, Button } from "@mui/material";
 import useStyles from "./styles";
 import DiscreteSlider from "../../components/DiscreteSlider";
 import CriteriaForm from "../../components/CriteriaForm";
 import CustomDialog from "../../components/CustomDialog";
+import { saveComparisons } from "../../services/BiciMapService";
+import { getComparisonBody } from "../../utils/comparison";
 
 export default function Home() {
   const classes = useStyles();
@@ -19,6 +21,36 @@ export default function Home() {
   const [surfaceLength, setSurfaceLength] = useState(1);
   const [surfaceTime, setSurfaceTime] = useState(1);
   const [lengthTime, setLengthTime] = useState(1);
+
+  const onClickComparisons = useCallback(async () => {
+    //setLoadingMediaServer(true);
+    const body = getComparisonBody(
+      cyclewaySurface,
+      cyclewayLength,
+      cyclewayTime,
+      surfaceLength,
+      surfaceTime,
+      lengthTime,
+      cycleway,
+      surface,
+      length,
+      time
+    );
+    const response = await saveComparisons(body);
+    //setMediaServerIsUp(response);
+    //setLoadingMediaServer(false);
+  }, [
+    cycleway,
+    surface,
+    length,
+    time,
+    cyclewaySurface,
+    cyclewayLength,
+    cyclewayTime,
+    surfaceLength,
+    surfaceTime,
+    lengthTime,
+  ]);
 
   return (
     <Container>
@@ -125,6 +157,13 @@ export default function Home() {
       ) : (
         <div />
       )}
+      <Button
+        variant="outlined"
+        onClick={onClickComparisons}
+        className={classes.button}
+      >
+        Enviar
+      </Button>
     </Container>
   );
 }
