@@ -12,9 +12,11 @@ def construct_blueprint(graph_service):
 
     @bp_graph.route('/path')
     def get_path():
-      origin = request.args.get('origin')
-      destination = request.args.get('destination')
-      graph_service.get_path(origin, destination)
-      return Response(status=200)
-
+      try:
+        origin = request.args.get('origin') + ', Buenos Aires'
+        destination = request.args.get('destination') + ', Buenos Aires'
+        graph_service.get_path(origin, destination)
+        return Response(status=200)
+      except:
+        return Response(status=400)
     return bp_graph

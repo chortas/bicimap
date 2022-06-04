@@ -3,8 +3,11 @@ import { Container, Button } from "@mui/material";
 import CustomInput from "../../components/CustomInput";
 import { getPath } from "../../services/BiciMapService";
 import CustomSnackBar from "../../components/CustomSnackBar";
+import useStyles from "./styles";
 
 export default function Home() {
+  const classes = useStyles();
+
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
   const [openSnackBar, setOpenSnackBar] = useState(false);
@@ -19,7 +22,7 @@ export default function Home() {
   }, [origin, destination]);
 
   return (
-    <Container>
+    <Container className={classes.container}>
       <CustomInput content="Dirección de salida" setProperty={setOrigin} />
       <CustomInput content="Dirección de llegada" setProperty={setDestination} />
       <Button variant="outlined" onClick={onClickPath}>
