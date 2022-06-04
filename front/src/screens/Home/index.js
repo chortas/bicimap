@@ -11,15 +11,17 @@ export default function Home() {
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
   const [openSnackBar, setOpenSnackBar] = useState(false);
+  const [contentToRender, setContentToRender] = useState("");
 
   const onClickPath = useCallback(async () => {
     const response = await getPath(origin, destination);
     if (response.status !== 200) {
       setOpenSnackBar(true);
     } else {
-      console.log("Funciono");
+      setContentToRender(response.data);
+      console.log(contentToRender);
     }
-  }, [origin, destination]);
+  }, [origin, destination, contentToRender]);
 
   return (
     <Container className={classes.container}>
@@ -34,6 +36,7 @@ export default function Home() {
         errorMessage="El formato de las direcciones no es válido. Revisar si la calle existe y escribirla con el formato <Nombre de calle, altura>"
         severity="error"
       />
+      <td dangerouslySetInnerHTML={{__html: contentToRender}} />
     </Container>
   );
 }

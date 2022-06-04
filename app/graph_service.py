@@ -22,6 +22,5 @@ class GraphService(object):
 
     def get_path(self, origin, destination):
         path = self.path_processor.get_path(origin, destination, self.criteria_comparator)
-        shortest_route_map = ox.plot_route_folium(self.bicycle_graph, path)
-        shortest_route_map.save("cycleway.html")
+        return ox.plot_route_folium(self.bicycle_graph, path)._repr_html_()
         
