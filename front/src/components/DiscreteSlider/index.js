@@ -66,7 +66,7 @@ export default function DiscreteSlider({
       >
         {title}
       </Typography>
-      <Box sx={{ width: 600 }}>
+      <Box>
         <Slider
           valueLabelDisplay="auto"
           valueLabelFormat={(value) => {

@@ -8,7 +8,7 @@ import CustomSnackBar from "../../components/CustomSnackBar";
 import { saveComparisons } from "../../services/BiciMapService";
 import { getComparisonBody } from "../../utils/comparison";
 
-export default function Home() {
+export default function Config({ configSuccess }) {
   const classes = useStyles();
 
   const [cycleway, setCycleway] = useState(true);
@@ -26,7 +26,6 @@ export default function Home() {
   const [openSnackBar, setOpenSnackBar] = useState(false);
 
   const onClickComparisons = useCallback(async () => {
-    //setLoadingMediaServer(true);
     const body = getComparisonBody(
       cyclewaySurface,
       cyclewayLength,
@@ -42,6 +41,9 @@ export default function Home() {
     const response = await saveComparisons(body);
     if (response.status !== 201) {
       setOpenSnackBar(true);
+    } else {
+      console.log("holaa");
+      configSuccess();
     }
   }, [
     cycleway,
@@ -54,6 +56,7 @@ export default function Home() {
     surfaceLength,
     surfaceTime,
     lengthTime,
+    configSuccess
   ]);
 
   return (
