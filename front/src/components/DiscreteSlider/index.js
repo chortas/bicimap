@@ -19,12 +19,40 @@ function marks(mark1, mark2, mark3) {
   ];
 }
 
+function renderToolTip(
+  value,
+  minValue,
+  minIntervalValue,
+  neutralValue,
+  maxIntervalValue,
+  maxValue
+) {
+  if (value === -9) {
+    return minValue;
+  }
+  if (value < 1 && value > -9) {
+    return minIntervalValue;
+  }
+  if (value === 1) {
+    return neutralValue;
+  }
+  if (value > 1 && value < 9) {
+    return maxIntervalValue;
+  }
+  return maxValue;
+}
+
 export default function DiscreteSlider({
   onChange,
   title,
   mark1,
   mark2,
   mark3,
+  minValue,
+  minIntervalValue,
+  neutralValue,
+  maxIntervalValue,
+  maxValue,
 }) {
   const classes = useStyles();
 
@@ -40,11 +68,20 @@ export default function DiscreteSlider({
       </Typography>
       <Box sx={{ width: 600 }}>
         <Slider
-          sx={{
-            "& .MuiSlider-markLabel": {
-              width: "200px",
-              whiteSpace: "break-spaces",
-            },
+          valueLabelDisplay="auto"
+          valueLabelFormat={(value) => {
+            return (
+              <div style={{ textAlign: "center" }}>
+                {renderToolTip(
+                  value,
+                  minValue,
+                  minIntervalValue,
+                  neutralValue,
+                  maxIntervalValue,
+                  maxValue
+                )}
+              </div>
+            );
           }}
           track={false}
           defaultValue={1}

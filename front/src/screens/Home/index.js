@@ -99,9 +99,14 @@ export default function Home() {
         <DiscreteSlider
           onChange={setCyclewaySurface}
           title="Comparación entre ir por bicisenda e ir por un camino que no esté empedrado"
-          mark1="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por bicisenda"
-          mark2="Me da igual ir por bicisenda que ir por un camino no empedrado"
-          mark3="Prefiero ampliamente ir por bicisenda antes que ir por un camino que no esté empedrado"
+          mark1="Camino no empedrado"
+          minValue="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por bicisenda"
+          minIntervalValue="Prefiero ir por un camino que no esté empedrado antes que ir por bicisenda"
+          mark2="Me da igual"
+          neutralValue="Me da igual ir por bicisenda que ir por un camino no empedrado"
+          maxIntervalValue="Prefiero ir por bicisenda antes que ir por un camino que no esté empedrado"
+          maxValue="Prefiero ampliamente ir por bicisenda antes que ir por un camino que no esté empedrado"
+          mark3="Bicisenda"
         />
       ) : (
         <div />
@@ -110,9 +115,14 @@ export default function Home() {
         <DiscreteSlider
           onChange={setCyclewayLength}
           title="Comparación entre ir por bicisenda e ir por un camino de menor distancia"
-          mark1="Prefiero ampliamente ir por un camino de menor distancia antes que ir por bicisenda"
-          mark2="Me da igual ir por bicisenda que ir por un camino de menor distancia"
-          mark3="Prefiero ampliamente ir por bicisenda antes que ir por un camino de menor distancia"
+          mark1="Camino de menor distancia"
+          minValue="Prefiero ampliamente ir por un camino de menor distancia antes que ir por bicisenda"
+          minIntervalValue="Prefiero ir por un camino de menor distancia antes que ir por bicisenda"
+          mark2="Me da igual"
+          neutralValue="Me da igual ir por bicisenda que ir por un camino de menor distancia"
+          maxIntervalValue="Prefiero ir por bicisenda antes que ir por un camino de menor distancia"
+          maxValue="Prefiero ampliamente ir por bicisenda antes que ir por un camino de menor distancia"
+          mark3="Bicisenda"
         />
       ) : (
         <div />
@@ -121,9 +131,14 @@ export default function Home() {
         <DiscreteSlider
           onChange={setCyclewayTime}
           title="Comparación entre ir por bicisenda e ir por un camino de menor tiempo de recorrido"
-          mark1="Prefiero ampliamente ir por un camino de menor tiempo de recorrido antes que ir por bicisenda"
-          mark2="Me da igual ir por bicisenda que ir por un camino de menor tiempo de recorrido"
-          mark3="Prefiero ampliamente ir por bicisenda antes que ir por un camino de menor tiempo de recorrido"
+          mark1="Camino de menor tiempo de recorrido"
+          minValue="Prefiero ampliamente ir por un camino de menor tiempo de recorrido antes que ir por bicisenda"
+          minIntervalValue="Prefiero ir por un camino de menor tiempo de recorrido antes que ir por bicisenda"
+          mark2="Me da igual"
+          neutralValue="Me da igual ir por bicisenda que ir por un camino de menor tiempo de recorrido"
+          maxIntervalValue="Prefiero ir por bicisenda antes que ir por un camino de menor tiempo de recorrido"
+          maxValue="Prefiero ampliamente ir por bicisenda antes que ir por un camino de menor tiempo de recorrido"
+          mark3="Bicisenda"
         />
       ) : (
         <div />
@@ -132,9 +147,14 @@ export default function Home() {
         <DiscreteSlider
           onChange={setSurfaceLength}
           title="Comparación entre ir por un camino que no esté empedrado e ir por un camino de menor distancia"
-          mark1="Prefiero ampliamente ir por un camino de menor distancia antes que ir por un camino que no esté empedrado"
-          mark2="Me da igual ir por un camino que no esté empedrado que ir por un camino de menor distancia"
-          mark3="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por un camino de menor distancia"
+          mark1="Camino de menor distancia"
+          minValue="Prefiero ampliamente ir por un camino de menor distancia antes que ir por un camino que no esté empedrado"
+          minIntervalValue="Prefiero ir por un camino de menor distancia antes que ir por un camino que no esté empedrado"
+          mark2="Me da igual"
+          neutralValue="Me da igual ir por un camino que no esté empedrado que ir por un camino de menor distancia"
+          maxIntervalValue="Prefiero ir por un camino que no esté empedrado antes que ir por un camino de menor distancia"
+          maxValue="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por un camino de menor distancia"
+          mark3="Camino que no esté empedrado"
         />
       ) : (
         <div />
@@ -143,9 +163,14 @@ export default function Home() {
         <DiscreteSlider
           onChange={setSurfaceTime}
           title="Comparación entre ir por un camino que no esté empedrado e ir por un camino de menor tiempo de recorrido"
-          mark1="Prefiero ampliamente ir por un camino de menor tiempo de recorrido antes que ir por un camino que no esté empedrado"
-          mark2="Me da igual ir por un camino que no esté empedrado que ir por un camino de menor tiempo de recorrido"
-          mark3="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por un camino de menor tiempo de recorrido"
+          mark1="Camino de menor tiempo de recorrido"
+          minValue="Prefiero ampliamente ir por un camino de menor tiempo de recorrido antes que ir por un camino que no esté empedrado"
+          minIntervalValue="Prefiero ir por un camino de menor tiempo de recorrido antes que ir por un camino que no esté empedrado"
+          mark2="Me da igual"
+          neutralValue="Me da igual ir por un camino que no esté empedrado que ir por un camino de menor tiempo de recorrido"
+          maxIntervalValue="Prefiero ir por un camino que no esté empedrado antes que ir por un camino de menor tiempo de recorrido"
+          maxValue="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por un camino de menor tiempo de recorrido"
+          mark3="Camino que no esté empedrado"
         />
       ) : (
         <div />
@@ -154,9 +179,14 @@ export default function Home() {
         <DiscreteSlider
           onChange={setLengthTime}
           title="Comparación entre ir por un camino de menor distancia e ir por un camino de menor tiempo de recorrido"
-          mark1="Prefiero ampliamente ir por un camino de menor tiempo de recorrido antes que ir por un camino de menor distancia"
-          mark2="Me da igual ir por un camino de menor distancia que ir por un camino de menor tiempo de recorrido"
-          mark3="Prefiero ampliamente ir por un camino de menor distancia antes que ir por un camino de menor tiempo de recorrido"
+          mark1="Camino de menor tiempo de recorrido"
+          minValue="Prefiero ampliamente ir por un camino de menor tiempo de recorrido antes que ir por un camino de menor distancia"
+          minIntervalValue="Prefiero ir por un camino de menor tiempo de recorrido antes que ir por un camino de menor distancia"
+          mark2="Me da igual"
+          neutralValue="Me da igual ir por un camino de menor distancia que ir por un camino de menor tiempo de recorrido"
+          maxIntervalValue="Prefiero ir por un camino de menor distancia antes que ir por un camino de menor tiempo de recorrido"
+          maxValue="Prefiero ampliamente ir por un camino de menor distancia antes que ir por un camino de menor tiempo de recorrido"
+          mark3="Camino de menor distancia"
         />
       ) : (
         <div />
