@@ -13,7 +13,6 @@ class CriteriaComparator:
         self.comparison_criteria.add(comparison[1])
     results = self.__compare(comparisons, name)
     if (not self.__is_consistent(results, len(self.comparison_criteria))):
-      print("estoy aca!")
       return False
     self.criteria = results
     return True

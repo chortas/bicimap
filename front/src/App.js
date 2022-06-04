@@ -1,13 +1,10 @@
 import "./App.css";
 import Config from "./screens/Config";
+import Home from "./screens/Home";
 import React, { useState, useCallback } from "react";
 import PrivateRoute from "./components/PrivateRoute";
 import { BrowserRouter, Switch, Redirect } from "react-router-dom";
 import PublicRoute from "./components/PublicRoute";
-
-/*function App() {
-  return <Config/>;
-}*/
 
 export default function App() {
   const [isConfigSent, setIsConfigSent] = useState(false);
@@ -31,8 +28,7 @@ export default function App() {
         <PrivateRoute
           key="/home"
           path="/home"
-          component={<div />}
-          //component={() => Home({ onLogout, itemSelected: route.component })}
+          component={() => Home()}
           isConfigSent={isConfigSent}
         />
         <Redirect to="/home" />
