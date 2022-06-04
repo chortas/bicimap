@@ -42,7 +42,6 @@ export default function Config({ configSuccess }) {
     if (response.status !== 201) {
       setOpenSnackBar(true);
     } else {
-      console.log("holaa");
       configSuccess();
     }
   }, [
@@ -56,7 +55,7 @@ export default function Config({ configSuccess }) {
     surfaceLength,
     surfaceTime,
     lengthTime,
-    configSuccess
+    configSuccess,
   ]);
 
   return (
@@ -194,21 +193,19 @@ export default function Config({ configSuccess }) {
       ) : (
         <div />
       )}
-      <Stack direction="row" spacing={1}>
-        <Button
-          variant="outlined"
-          onClick={onClickComparisons}
-          className={classes.button}
-        >
-          Enviar
-        </Button>
-        <CustomSnackBar
-          open={openSnackBar}
-          setOpenSnackBar={setOpenSnackBar}
-          errorMessage="Las comparaciones no son consistentes. Recomendación: revisar si se da un caso donde se dice que el criterio A es más importante que el B, el criterio A es menos importante que el C y el criterio B es más importante que el C"
-          severity="error"
-        />
-      </Stack>
+      <Button
+        variant="outlined"
+        onClick={onClickComparisons}
+        className={classes.button}
+      >
+        Enviar
+      </Button>
+      <CustomSnackBar
+        open={openSnackBar}
+        setOpenSnackBar={setOpenSnackBar}
+        errorMessage="Las comparaciones no son consistentes. Recomendación: revisar si se da un caso donde se dice que el criterio A es más importante que el B, el criterio A es menos importante que el C y el criterio B es más importante que el C"
+        severity="error"
+      />
     </Container>
   );
 }

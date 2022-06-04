@@ -55,19 +55,19 @@ class PathProcessor:
 
     if criteria_comparator.is_criteria("cycleway"):
       cycleway_comparisons = process_comparisons(self.cycleway_graph, alternatives, calculate_graph_comparison)
-      compared_alternatives.append(criteria_comparator.compare_alternative(cycleway_comparisons, "cycleway", len(alternatives)))
+      compared_alternatives.append(criteria_comparator.compare_alternative(cycleway_comparisons, "cycleway"))
 
     if criteria_comparator.is_criteria("surface"):
       surface_comparisons = process_comparisons(self.surface_graph, alternatives, calculate_graph_comparison)
-      compared_alternatives.append(criteria_comparator.compare_alternative(surface_comparisons, "surface", len(alternatives)))
+      compared_alternatives.append(criteria_comparator.compare_alternative(surface_comparisons, "surface"))
 
     if criteria_comparator.is_criteria("length"):
       length_comparisons = process_comparisons(self.bicycle_graph, alternatives, calculate_measurable_comparison, 'length')
-      compared_alternatives.append(criteria_comparator.compare_alternative(length_comparisons, "length", len(alternatives)))
+      compared_alternatives.append(criteria_comparator.compare_alternative(length_comparisons, "length"))
 
     if criteria_comparator.is_criteria("travel_time"):
       time_comparisons = process_comparisons(self.bicycle_graph, alternatives, calculate_measurable_comparison, 'travel_time')
-      compared_alternatives.append(criteria_comparator.compare_alternative(time_comparisons, "travel_time", len(alternatives)))
+      compared_alternatives.append(criteria_comparator.compare_alternative(time_comparisons, "travel_time"))
 
     best_route = criteria_comparator.get_best_route(compared_alternatives)
 

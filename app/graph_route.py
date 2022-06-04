@@ -12,8 +12,9 @@ def construct_blueprint(graph_service):
 
     @bp_graph.route('/path')
     def get_path():
-      body = request.get_json()
-      graph_service.get_path(body)
+      origin = request.args.get('origin')
+      destination = request.args.get('destination')
+      graph_service.get_path(origin, destination)
       return Response(status=200)
 
     return bp_graph

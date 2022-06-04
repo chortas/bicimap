@@ -3,7 +3,7 @@ import { Container, TextField, InputAdornment } from "@mui/material";
 import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
 import useStyles from "./styles";
 
-export default function CustomInput({ content }) {
+export default function CustomInput({ content, setProperty }) {
   const classes = useStyles();
 
   return (
@@ -20,7 +20,8 @@ export default function CustomInput({ content }) {
         }}
         variant="standard"
         fullWidth
-      />
+        onChange={(event) => setProperty(event.target.value)}
+        />
     </Container>
   );
 }

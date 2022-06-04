@@ -17,8 +17,8 @@ class CriteriaComparator:
     self.criteria = results
     return True
     
-  def compare_alternative(self, comparisons, name, n_comparisons):
-    return self.__compare(comparisons, name, n_comparisons)
+  def compare_alternative(self, comparisons, name):
+    return self.__compare(comparisons, name)
 
   def is_criteria(self, criteria):
     return criteria in self.comparison_criteria

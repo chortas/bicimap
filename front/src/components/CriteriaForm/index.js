@@ -4,7 +4,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import useStyles from "./styles";
 
-export default function CheckboxLabels({
+export default function CriteriaForm({
   setCycleway,
   setSurface,
   setLength,
