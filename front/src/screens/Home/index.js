@@ -4,6 +4,7 @@ import CustomInput from "../../components/CustomInput";
 import { getPath } from "../../services/BiciMapService";
 import CustomSnackBar from "../../components/CustomSnackBar";
 import useStyles from "./styles";
+import CustomAppBar from "../../components/CustomAppBar";
 
 export default function Home() {
   const classes = useStyles();
@@ -25,13 +26,18 @@ export default function Home() {
 
   return (
     <Container className={classes.container}>
+      <CustomAppBar />
       <CustomInput content="Dirección de salida" setProperty={setOrigin} />
       <CustomInput
         content="Dirección de llegada"
         setProperty={setDestination}
       />
       <Box m={3} pt={1}>
-        <Button variant="outlined" onClick={onClickPath}>
+        <Button
+          variant="outlined"
+          onClick={onClickPath}
+          className={classes.button}
+        >
           Obtener camino
         </Button>
       </Box>
