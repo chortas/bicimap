@@ -9,51 +9,75 @@ import CustomAppBar from "../../components/CustomAppBar";
 export default function Home() {
   const classes = useStyles();
 
-  const [origin, setOrigin] = useState("");
-  const [destination, setDestination] = useState("");
+  const [points, setPoints] = useState([]);
   const [openSnackBar, setOpenSnackBar] = useState(false);
   const [contentToRender, setContentToRender] = useState("");
   const [idxPath, setIdxPath] = useState(0);
   const [paths, setPaths] = useState([]);
-
   const [directionAsked, setDirectionAsked] = useState(false);
   const [loadingPath, setLoadingPath] = useState(false);
 
+  //const [stops, setStops] = useState([]);
+  const [stops, setStops] = useState(0);
+
   const onClickPath = useCallback(async () => {
     setLoadingPath(true);
-    const response = await getPaths(origin, destination);
+    const response = await getPaths(points);
     if (response.status !== 200) {
       setOpenSnackBar(true);
     } else {
       setPaths(response.data["paths"]);
+      console.log(response.data["paths"]);
       setContentToRender(response.data["paths"][idxPath]);
       setDirectionAsked(true);
       setIdxPath(1);
     }
     setLoadingPath(false);
-  }, [origin, destination, idxPath]);
+  }, [points, idxPath]);
 
   const onClickOtherPath = useCallback(async () => {
     setContentToRender(paths[idxPath]);
-    const newIdxPath = (idxPath === 1 ? 0 : 1);
-    console.log(newIdxPath);
+    const newIdxPath = idxPath === 1 ? 0 : 1;
     setIdxPath(newIdxPath);
   }, [paths, idxPath]);
+
+  const onClickStops = useCallback(async () => {
+    setStops(stops + 1);
+  }, [stops]);
+
+  const onChangePoints = useCallback(
+    async (newDestination, idx) => {
+      var destinationCopy = [...points];
+      destinationCopy[idx] = newDestination;
+      setPoints(destinationCopy);
+    },
+    [points]
+  );
 
   return (
     <Container className={classes.container}>
       <CustomAppBar title="BiciMap" />
-      <CustomInput content="Dirección de salida" setProperty={setOrigin} />
       <CustomInput
-        content="Dirección de llegada"
-        setProperty={setDestination}
+        key={0}
+        idx={0}
+        content="Dirección de salida"
+        setProperty={onChangePoints}
+        onClick={onClickStops}
       />
-      <Box m={3} pt={1}>
+
+      {[...Array(stops).keys()].map((x) => (
+        <CustomInput
+          key={x + 1}
+          idx={x + 1}
+          content="Parada"
+          setProperty={onChangePoints}
+          onClick={onClickStops}
+        />
+      ))}
+
+      <Box m={2} pt={1}>
         {loadingPath ? (
-          <CircularProgress
-            size={30}
-            className={classes.circularProgress}
-          />
+          <CircularProgress size={30} className={classes.circularProgress} />
         ) : (
           <Button
             variant="outlined"
@@ -72,14 +96,14 @@ export default function Home() {
       />
       {directionAsked ? (
         <div
-          style={{ height: "600px", width: "1000px", paddingLeft: "25px" }}
+          style={{ height: "600px", width: "1000px", paddingLeft: "20px" }}
           dangerouslySetInnerHTML={{ __html: contentToRender }}
         />
       ) : (
         <div />
       )}
       {directionAsked ? (
-        <Box m={3} pt={1}>
+        <Box m={2} pt={1}>
           <Button
             variant="outlined"
             onClick={onClickOtherPath}

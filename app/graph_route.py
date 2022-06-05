@@ -10,12 +10,15 @@ def construct_blueprint(graph_service):
         return Response(status=201)
       return Response(status=400)
 
-    @bp_graph.route('/path')
+    @bp_graph.route('/path', methods=['POST'])
     def get_path():
       try:
-        origin = request.args.get('origin') + ', Buenos Aires'
-        destination = request.args.get('destination') + ', Buenos Aires'
-        paths = graph_service.get_paths(origin, destination)
+        body = request.get_json()
+        print(f"Body: {body}")
+        points = body['stops']
+
+        paths = graph_service.get_paths(points)
+
         data = {
             "paths" : paths,
         }

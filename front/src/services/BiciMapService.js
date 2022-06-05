@@ -5,5 +5,5 @@ const api = create({
 });
 
 export const saveComparisons = (body) => api.post("/comparisons", body);
-export const getPaths = (originParam, destinationParam) =>
-  api.get("/path", { origin: originParam, destination: destinationParam });
+export const getPaths = (points) =>
+  api.post("/path", { stops: points });
