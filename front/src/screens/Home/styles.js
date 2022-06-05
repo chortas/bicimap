@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
     width: "500px",
   },
   map: {
-    "height": "100px",
-    "width": "500px",
+    height: "100px",
+    width: "500px",
   },
   button: {
     color: "#ffff",
@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: teal[300],
     },
+  },
+  circularProgress: {
+    color: teal[300],
   },
 }));
 

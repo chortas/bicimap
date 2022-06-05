@@ -5,6 +5,7 @@ import DiscreteSlider from "../../components/DiscreteSlider";
 import CriteriaForm from "../../components/CriteriaForm";
 import CustomDialog from "../../components/CustomDialog";
 import CustomSnackBar from "../../components/CustomSnackBar";
+import CustomAppBar from "../../components/CustomAppBar";
 import { saveComparisons } from "../../services/BiciMapService";
 import { getComparisonBody } from "../../utils/comparison";
 
@@ -60,14 +61,7 @@ export default function Config({ configSuccess }) {
 
   return (
     <Container>
-      <Typography
-        variant="h3"
-        gutterBottom
-        component="div"
-        className={classes.title}
-      >
-        Configuración
-      </Typography>
+      <CustomAppBar title="Configuración" />
 
       <Stack direction="row" spacing={1}>
         <Typography

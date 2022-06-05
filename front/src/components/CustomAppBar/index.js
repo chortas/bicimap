@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Typography, Box, IconButton } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import useStyles from "./styles";
 
-export default function CustomAppBar() {
+export default function CustomAppBar({ title }) {
   const classes = useStyles();
 
   return (
@@ -12,7 +12,7 @@ export default function CustomAppBar() {
         <Toolbar>
           <div>
             <Typography variant="h6" noWrap style={{ color: "#ffffff" }}>
-              BiciMap
+              {title}
             </Typography>
           </div>
           <div>
