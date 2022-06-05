@@ -30,7 +30,6 @@ export default function Home() {
       console.log(response.data["paths"]);
       setContentToRender(response.data["paths"][idxPath]);
       setDirectionAsked(true);
-      setIdxPath(1);
     }
     setLoadingPath(false);
   }, [points, idxPath]);
