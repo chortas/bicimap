@@ -1,6 +1,7 @@
 import osmnx as ox
 import networkx as nx
 from utils import *
+import folium
 
 N_PATHS = 1000
 
@@ -21,6 +22,16 @@ class PathProcessor:
     origin_node = ox.get_nearest_node(self.bicycle_graph, origin_location_coordinates)
     dest_node = ox.get_nearest_node(self.bicycle_graph, dest_location_coordinates)
 
+    self.start_marker = folium.Marker(
+            location = origin_location_coordinates,
+            popup = origin_node,
+            icon = folium.Icon(color='beige'))
+
+    self.end_marker = folium.Marker(
+            location = dest_location_coordinates,
+            popup = dest_node,
+            icon = folium.Icon(color='beige'))
+
     graph_aux = nx.DiGraph(self.bicycle_graph)
     print("About to obtain paths...")
     shortest_routes = k_shortest_paths(graph_aux, origin_node, dest_node, N_PATHS, weight=optimizer)
@@ -31,6 +42,9 @@ class PathProcessor:
       best_routes = self.__get_best_route(best_routes, n, criteria_comparator)
 
     return self.__sort_best_routes(best_routes, criteria_comparator, 2) # TODO: cambiar para entrega de verdad
+
+  def get_markers(self):
+    return (self.start_marker, self.end_marker)
     
   def __sort_best_routes(self, best_routes, criteria_comparator, n): 
     compared_alternatives = self.__get_compared_alternatives(criteria_comparator, best_routes)

@@ -22,8 +22,12 @@ class GraphService(object):
 
     def get_paths(self, origin, destination):
         paths = self.path_processor.get_paths(origin, destination, self.criteria_comparator)
+        markers = self.path_processor.get_markers()
         paths_html = []
         for path in paths:
-          paths_html.append(ox.plot_route_folium(self.bicycle_graph, path)._repr_html_())
+          map_plot = ox.plot_route_folium(self.bicycle_graph, path, color="#ff80ab")
+          for marker in markers:
+            marker.add_to(map_plot)
+          paths_html.append(map_plot._repr_html_())
         return paths_html
         
