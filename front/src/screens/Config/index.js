@@ -8,6 +8,7 @@ import CustomSnackBar from "../../components/CustomSnackBar";
 import CustomAppBar from "../../components/CustomAppBar";
 import { saveComparisons } from "../../services/BiciMapService";
 import { getComparisonBody } from "../../utils/comparison";
+import BuildIcon from "@mui/icons-material/Build";
 
 export default function Config({ configSuccess }) {
   const classes = useStyles();
@@ -61,7 +62,7 @@ export default function Config({ configSuccess }) {
 
   return (
     <Container>
-      <CustomAppBar title="Configuración" />
+      <CustomAppBar title="Configuración" icon={<BuildIcon />} />
 
       <Stack direction="row" spacing={1}>
         <Typography

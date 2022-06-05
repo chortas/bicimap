@@ -1,25 +1,24 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Box, IconButton } from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { AppBar, Toolbar, Typography, Box, Stack } from "@mui/material";
 import useStyles from "./styles";
 
-export default function CustomAppBar({ title }) {
+export default function CustomAppBar({ title, icon }) {
   const classes = useStyles();
 
   return (
     <Box m={8} pt={1}>
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar
+        position="fixed"
+        style={{ backgroundColor: "#4db6ac" }}
+        className={classes.appBar}
+      >
         <Toolbar>
-          <div>
+          <Stack direction="row" spacing={1}>
             <Typography variant="h6" noWrap style={{ color: "#ffffff" }}>
               {title}
             </Typography>
-          </div>
-          <div>
-            <IconButton className={classes.button}>
-              <ArrowBackIosIcon style={{ color: "#ffffff" }} />
-            </IconButton>
-          </div>
+            {icon}
+          </Stack>
         </Toolbar>
       </AppBar>
     </Box>

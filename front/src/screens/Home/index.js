@@ -5,6 +5,7 @@ import { getPaths } from "../../services/BiciMapService";
 import CustomSnackBar from "../../components/CustomSnackBar";
 import useStyles from "./styles";
 import CustomAppBar from "../../components/CustomAppBar";
+import HomeIcon from "@mui/icons-material/Home";
 
 export default function Home() {
   const classes = useStyles();
@@ -55,7 +56,7 @@ export default function Home() {
 
   return (
     <Container className={classes.container}>
-      <CustomAppBar title="BiciMap" />
+      <CustomAppBar title="BiciMap" icon={<HomeIcon />} />
       <CustomInput
         key={0}
         idx={0}

@@ -13,11 +13,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "10px",
   },
   appBar: {
-    color: theme.palette.getContrastText(teal[300]),
-    backgroundColor: "#4db6ac",
-    "&:hover": {
-      backgroundColor: teal[300],
-    },
+    minHeight: 50
   },
 }));
 
