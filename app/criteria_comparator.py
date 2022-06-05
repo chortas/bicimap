@@ -27,7 +27,14 @@ class CriteriaComparator:
     self.criteria.add_children(alternatives)
     results = self.criteria.target_weights
     return max(results, key=(lambda key: results[key]))
-    # return max(results.values())
+
+  def get_best_routes(self, alternatives, n):
+    self.criteria.add_children(alternatives)
+    results = self.criteria.target_weights
+    results_sorted = sorted(results, key=(lambda key: results[key]), reverse=True)
+    print(f"Results: {results}")  
+    print(f"Results sorted: {results_sorted}")
+    return results_sorted
 
   def get_max_IC(self):
     return max(IA.keys())

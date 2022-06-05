@@ -29,8 +29,16 @@ class PathProcessor:
     best_routes = self.__get_best_route(shortest_routes, n, criteria_comparator)
     while (len(best_routes) != 2):
       best_routes = self.__get_best_route(best_routes, n, criteria_comparator)
+
+    return self.__sort_best_routes(best_routes, criteria_comparator, 2) # TODO: cambiar para entrega de verdad
     
-    return best_routes
+  def __sort_best_routes(self, best_routes, criteria_comparator, n): 
+    compared_alternatives = self.__get_compared_alternatives(criteria_comparator, best_routes)
+    best_routes_sorted = criteria_comparator.get_best_routes(compared_alternatives, n)
+    results = []
+    for idx in best_routes_sorted:
+      results.append(best_routes[idx])
+    return results
 
   def __get_best_route(self, routes: List[List[int]], n, criteria_comparator) -> List[List[int]]:
     alternatives = [routes[i:i + n] for i in range(0, len(routes), n)]
@@ -46,6 +54,13 @@ class PathProcessor:
     if (len(alternatives) == 1): 
       return alternatives[0]
 
+    compared_alternatives = self.__get_compared_alternatives(criteria_comparator, alternatives)
+
+    best_route = criteria_comparator.get_best_route(compared_alternatives)
+
+    return alternatives[best_route]
+
+  def __get_compared_alternatives(self, criteria_comparator, alternatives):
     compared_alternatives = []
 
     if criteria_comparator.is_criteria("cycleway"):
@@ -64,6 +79,4 @@ class PathProcessor:
       time_comparisons = process_comparisons(self.bicycle_graph, alternatives, calculate_measurable_comparison, 'travel_time')
       compared_alternatives.append(criteria_comparator.compare_alternative(time_comparisons, "travel_time"))
 
-    best_route = criteria_comparator.get_best_route(compared_alternatives)
-
-    return alternatives[best_route]
+    return compared_alternatives
