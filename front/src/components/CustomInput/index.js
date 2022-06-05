@@ -1,13 +1,14 @@
 import React from "react";
-import { Container, TextField, InputAdornment } from "@mui/material";
+import { Stack, TextField, InputAdornment, IconButton } from "@mui/material";
 import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
+import AddIcon from "@mui/icons-material/Add";
 import useStyles from "./styles";
 
-export default function CustomInput({ content, setProperty }) {
+export default function CustomInput({ idx, content, setProperty, onClick }) {
   const classes = useStyles();
 
   return (
-    <Container className={classes.container}>
+    <Stack direction="row" spacing={1} className={classes.stack}>
       <TextField
         className={classes.textField}
         label={content}
@@ -20,8 +21,11 @@ export default function CustomInput({ content, setProperty }) {
         }}
         variant="standard"
         fullWidth
-        onChange={(event) => setProperty(event.target.value)}
-        />
-    </Container>
+        onChange={(event) => setProperty(event.target.value, idx)}
+      />
+      <IconButton onClick={onClick}>
+        <AddIcon />
+      </IconButton>
+    </Stack>
   );
 }
