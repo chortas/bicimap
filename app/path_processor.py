@@ -10,7 +10,7 @@ class PathProcessor:
     self.cycleway_graph = cycleway_graph
     self.surface_graph = surface_graph
 
-  def get_path(self, origin, destination, criteria_comparator):
+  def get_paths(self, origin, destination, criteria_comparator):
     optimizer = criteria_comparator.get_optimizer()
 
     origin_location_coordinates = get_coordinates(origin)
@@ -25,17 +25,12 @@ class PathProcessor:
     print("About to obtain paths...")
     shortest_routes = k_shortest_paths(graph_aux, origin_node, dest_node, N_PATHS, weight=optimizer)
 
-    print("About to create html...")
-    '''for i in range(len(shortest_routes)):
-      shortest_route_map = ox.plot_route_folium(self.bicycle_graph, shortest_routes[i])
-      shortest_route_map.save(str(i) + "cycleway.html")'''
-
     n = criteria_comparator.get_max_IC()
     best_routes = self.__get_best_route(shortest_routes, n, criteria_comparator)
-    while (len(best_routes) != 1):
+    while (len(best_routes) != 2):
       best_routes = self.__get_best_route(best_routes, n, criteria_comparator)
     
-    return best_routes[0]
+    return best_routes
 
   def __get_best_route(self, routes: List[List[int]], n, criteria_comparator) -> List[List[int]]:
     alternatives = [routes[i:i + n] for i in range(0, len(routes), n)]

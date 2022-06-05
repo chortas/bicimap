@@ -20,7 +20,10 @@ class GraphService(object):
         comparisons[tuple(elemen.split(','))] = body[elemen]
       return self.criteria_comparator.compare_criteria(comparisons, 'Criteria')
 
-    def get_path(self, origin, destination):
-        path = self.path_processor.get_path(origin, destination, self.criteria_comparator)
-        return ox.plot_route_folium(self.bicycle_graph, path)._repr_html_()
+    def get_paths(self, origin, destination):
+        paths = self.path_processor.get_paths(origin, destination, self.criteria_comparator)
+        paths_html = []
+        for path in paths:
+          paths_html.append(ox.plot_route_folium(self.bicycle_graph, path)._repr_html_())
+        return paths_html
         

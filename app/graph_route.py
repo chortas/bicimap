@@ -1,4 +1,4 @@
-from flask import Blueprint, Response, request, render_template_string
+from flask import Blueprint, Response, request, jsonify
 
 def construct_blueprint(graph_service):
     bp_graph = Blueprint("bp_graph", __name__)
@@ -15,8 +15,12 @@ def construct_blueprint(graph_service):
       try:
         origin = request.args.get('origin') + ', Buenos Aires'
         destination = request.args.get('destination') + ', Buenos Aires'
-        path = graph_service.get_path(origin, destination)
-        return render_template_string(path)
+        paths = graph_service.get_paths(origin, destination)
+        data = {
+            "paths" : paths,
+        }
+        return jsonify(data)
+
       except Exception as e:
         print(e)
         return Response(status=400)
