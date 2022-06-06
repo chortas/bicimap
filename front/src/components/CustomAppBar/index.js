@@ -6,7 +6,7 @@ export default function CustomAppBar({ title, icon }) {
   const classes = useStyles();
 
   return (
-    <Box m={8} pt={1}>
+    <Box m={5} pt={1}>
       <AppBar
         position="fixed"
         style={{ backgroundColor: "#4db6ac" }}
