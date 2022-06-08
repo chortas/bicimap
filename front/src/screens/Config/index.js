@@ -64,151 +64,151 @@ export default function Config({ configSuccess }) {
     <Box className={classes.boxOut}>
       <CustomAppBar title="Configuración" icon={<BuildIcon />} />
 
-      <Box className={classes.boxIn}>
-        <Stack direction="row">
-          <Typography
-            variant="h5"
-            gutterBottom
-            component="div"
-            className={classes.title}
-          >
-            Criterios a tener en cuenta
-          </Typography>
-          <CustomDialog
-            content="Se busca seleccionar qué criterios tener en cuenta para calcular un camino."
+      <Stack direction="row" spacing={8}>
+        <Box className={classes.boxIn1}>
+          <Stack direction="row">
+            <Typography
+              variant="h5"
+              gutterBottom
+              component="div"
+              className={classes.title}
+            >
+              Criterios a tener en cuenta
+            </Typography>
+            <CustomDialog content="Se busca seleccionar qué criterios tener en cuenta para calcular un camino." />
+          </Stack>
+          <CriteriaForm
+            setCycleway={setCycleway}
+            setSurface={setSurface}
+            setLength={setLength}
+            setTime={setTime}
           />
-        </Stack>
-        <CriteriaForm
-          setCycleway={setCycleway}
-          setSurface={setSurface}
-          setLength={setLength}
-          setTime={setTime}
-        />
-      </Box>
-      <Box className={classes.boxIn}>
-        <Stack direction="row">
-          <Typography
-            variant="h5"
-            gutterBottom
-            component="div"
-            className={classes.comparisons}
-          >
-            Comparaciones
-          </Typography>
-          <CustomDialog content="Se busca determinar la importancia de un criterio por sobre otro para poder encontrar el camino que más se ajuste a sus preferencias." />
-        </Stack>
-        {cycleway && surface ? (
-          <DiscreteSlider
-            onChange={setCyclewaySurface}
-            title="Comparación entre ir por bicisenda e ir por un camino que no esté empedrado"
-            mark1="Camino no empedrado"
-            minValue="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por bicisenda"
-            minIntervalValue="Prefiero ir por un camino que no esté empedrado antes que ir por bicisenda"
-            mark2="Me da igual"
-            neutralValue="Me da igual ir por bicisenda que ir por un camino no empedrado"
-            maxIntervalValue="Prefiero ir por bicisenda antes que ir por un camino que no esté empedrado"
-            maxValue="Prefiero ampliamente ir por bicisenda antes que ir por un camino que no esté empedrado"
-            mark3="Bicisenda"
-          />
-        ) : (
-          <div />
-        )}
-        {cycleway && length ? (
-          <DiscreteSlider
-            onChange={setCyclewayLength}
-            title="Comparación entre ir por bicisenda e ir por un camino de menor distancia"
-            mark1="Camino de menor distancia"
-            minValue="Prefiero ampliamente ir por un camino de menor distancia antes que ir por bicisenda"
-            minIntervalValue="Prefiero ir por un camino de menor distancia antes que ir por bicisenda"
-            mark2="Me da igual"
-            neutralValue="Me da igual ir por bicisenda que ir por un camino de menor distancia"
-            maxIntervalValue="Prefiero ir por bicisenda antes que ir por un camino de menor distancia"
-            maxValue="Prefiero ampliamente ir por bicisenda antes que ir por un camino de menor distancia"
-            mark3="Bicisenda"
-          />
-        ) : (
-          <div />
-        )}
-        {cycleway && time ? (
-          <DiscreteSlider
-            onChange={setCyclewayTime}
-            title="Comparación entre ir por bicisenda e ir por un camino de menor tiempo de recorrido"
-            mark1="Camino de menor tiempo de recorrido"
-            minValue="Prefiero ampliamente ir por un camino de menor tiempo de recorrido antes que ir por bicisenda"
-            minIntervalValue="Prefiero ir por un camino de menor tiempo de recorrido antes que ir por bicisenda"
-            mark2="Me da igual"
-            neutralValue="Me da igual ir por bicisenda que ir por un camino de menor tiempo de recorrido"
-            maxIntervalValue="Prefiero ir por bicisenda antes que ir por un camino de menor tiempo de recorrido"
-            maxValue="Prefiero ampliamente ir por bicisenda antes que ir por un camino de menor tiempo de recorrido"
-            mark3="Bicisenda"
-          />
-        ) : (
-          <div />
-        )}
-        {surface && length ? (
-          <DiscreteSlider
-            onChange={setSurfaceLength}
-            title="Comparación entre ir por un camino que no esté empedrado e ir por un camino de menor distancia"
-            mark1="Camino de menor distancia"
-            minValue="Prefiero ampliamente ir por un camino de menor distancia antes que ir por un camino que no esté empedrado"
-            minIntervalValue="Prefiero ir por un camino de menor distancia antes que ir por un camino que no esté empedrado"
-            mark2="Me da igual"
-            neutralValue="Me da igual ir por un camino que no esté empedrado que ir por un camino de menor distancia"
-            maxIntervalValue="Prefiero ir por un camino que no esté empedrado antes que ir por un camino de menor distancia"
-            maxValue="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por un camino de menor distancia"
-            mark3="Camino que no esté empedrado"
-          />
-        ) : (
-          <div />
-        )}
-        {surface && time ? (
-          <DiscreteSlider
-            onChange={setSurfaceTime}
-            title="Comparación entre ir por un camino que no esté empedrado e ir por un camino de menor tiempo de recorrido"
-            mark1="Camino de menor tiempo de recorrido"
-            minValue="Prefiero ampliamente ir por un camino de menor tiempo de recorrido antes que ir por un camino que no esté empedrado"
-            minIntervalValue="Prefiero ir por un camino de menor tiempo de recorrido antes que ir por un camino que no esté empedrado"
-            mark2="Me da igual"
-            neutralValue="Me da igual ir por un camino que no esté empedrado que ir por un camino de menor tiempo de recorrido"
-            maxIntervalValue="Prefiero ir por un camino que no esté empedrado antes que ir por un camino de menor tiempo de recorrido"
-            maxValue="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por un camino de menor tiempo de recorrido"
-            mark3="Camino que no esté empedrado"
-          />
-        ) : (
-          <div />
-        )}
-        {length && time ? (
-          <DiscreteSlider
-            onChange={setLengthTime}
-            title="Comparación entre ir por un camino de menor distancia e ir por un camino de menor tiempo de recorrido"
-            mark1="Camino de menor tiempo de recorrido"
-            minValue="Prefiero ampliamente ir por un camino de menor tiempo de recorrido antes que ir por un camino de menor distancia"
-            minIntervalValue="Prefiero ir por un camino de menor tiempo de recorrido antes que ir por un camino de menor distancia"
-            mark2="Me da igual"
-            neutralValue="Me da igual ir por un camino de menor distancia que ir por un camino de menor tiempo de recorrido"
-            maxIntervalValue="Prefiero ir por un camino de menor distancia antes que ir por un camino de menor tiempo de recorrido"
-            maxValue="Prefiero ampliamente ir por un camino de menor distancia antes que ir por un camino de menor tiempo de recorrido"
-            mark3="Camino de menor distancia"
-          />
-        ) : (
-          <div />
-        )}
-        <Box m={1}>
-          <Button
-            variant="outlined"
-            onClick={onClickComparisons}
-            className={classes.button}
-          >
-            Enviar
-          </Button>
         </Box>
-        <CustomSnackBar
-          open={openSnackBar}
-          setOpenSnackBar={setOpenSnackBar}
-          errorMessage="Las comparaciones no son consistentes. Recomendación: revisar si se da un caso donde se dice que el criterio A es más importante que el B, el criterio A es menos importante que el C y el criterio B es más importante que el C"
-          severity="error"
-        />
-      </Box>
+        <Box className={classes.boxIn2}>
+          <Stack direction="row">
+            <Typography
+              variant="h5"
+              gutterBottom
+              component="div"
+              className={classes.comparisons}
+            >
+              Comparaciones
+            </Typography>
+            <CustomDialog content="Se busca determinar la importancia de un criterio por sobre otro para poder encontrar el camino que más se ajuste a sus preferencias." />
+          </Stack>
+          {cycleway && surface ? (
+            <DiscreteSlider
+              onChange={setCyclewaySurface}
+              title="Comparación entre ir por bicisenda e ir por un camino que no esté empedrado"
+              mark1="Camino no empedrado"
+              minValue="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por bicisenda"
+              minIntervalValue="Prefiero ir por un camino que no esté empedrado antes que ir por bicisenda"
+              mark2="Me da igual"
+              neutralValue="Me da igual ir por bicisenda que ir por un camino no empedrado"
+              maxIntervalValue="Prefiero ir por bicisenda antes que ir por un camino que no esté empedrado"
+              maxValue="Prefiero ampliamente ir por bicisenda antes que ir por un camino que no esté empedrado"
+              mark3="Bicisenda"
+            />
+          ) : (
+            <div />
+          )}
+          {cycleway && length ? (
+            <DiscreteSlider
+              onChange={setCyclewayLength}
+              title="Comparación entre ir por bicisenda e ir por un camino de menor distancia"
+              mark1="Camino de menor distancia"
+              minValue="Prefiero ampliamente ir por un camino de menor distancia antes que ir por bicisenda"
+              minIntervalValue="Prefiero ir por un camino de menor distancia antes que ir por bicisenda"
+              mark2="Me da igual"
+              neutralValue="Me da igual ir por bicisenda que ir por un camino de menor distancia"
+              maxIntervalValue="Prefiero ir por bicisenda antes que ir por un camino de menor distancia"
+              maxValue="Prefiero ampliamente ir por bicisenda antes que ir por un camino de menor distancia"
+              mark3="Bicisenda"
+            />
+          ) : (
+            <div />
+          )}
+          {cycleway && time ? (
+            <DiscreteSlider
+              onChange={setCyclewayTime}
+              title="Comparación entre ir por bicisenda e ir por un camino de menor tiempo de recorrido"
+              mark1="Camino de menor tiempo de recorrido"
+              minValue="Prefiero ampliamente ir por un camino de menor tiempo de recorrido antes que ir por bicisenda"
+              minIntervalValue="Prefiero ir por un camino de menor tiempo de recorrido antes que ir por bicisenda"
+              mark2="Me da igual"
+              neutralValue="Me da igual ir por bicisenda que ir por un camino de menor tiempo de recorrido"
+              maxIntervalValue="Prefiero ir por bicisenda antes que ir por un camino de menor tiempo de recorrido"
+              maxValue="Prefiero ampliamente ir por bicisenda antes que ir por un camino de menor tiempo de recorrido"
+              mark3="Bicisenda"
+            />
+          ) : (
+            <div />
+          )}
+          {surface && length ? (
+            <DiscreteSlider
+              onChange={setSurfaceLength}
+              title="Comparación entre ir por un camino que no esté empedrado e ir por un camino de menor distancia"
+              mark1="Camino de menor distancia"
+              minValue="Prefiero ampliamente ir por un camino de menor distancia antes que ir por un camino que no esté empedrado"
+              minIntervalValue="Prefiero ir por un camino de menor distancia antes que ir por un camino que no esté empedrado"
+              mark2="Me da igual"
+              neutralValue="Me da igual ir por un camino que no esté empedrado que ir por un camino de menor distancia"
+              maxIntervalValue="Prefiero ir por un camino que no esté empedrado antes que ir por un camino de menor distancia"
+              maxValue="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por un camino de menor distancia"
+              mark3="Camino que no esté empedrado"
+            />
+          ) : (
+            <div />
+          )}
+          {surface && time ? (
+            <DiscreteSlider
+              onChange={setSurfaceTime}
+              title="Comparación entre ir por un camino que no esté empedrado e ir por un camino de menor tiempo de recorrido"
+              mark1="Camino de menor tiempo de recorrido"
+              minValue="Prefiero ampliamente ir por un camino de menor tiempo de recorrido antes que ir por un camino que no esté empedrado"
+              minIntervalValue="Prefiero ir por un camino de menor tiempo de recorrido antes que ir por un camino que no esté empedrado"
+              mark2="Me da igual"
+              neutralValue="Me da igual ir por un camino que no esté empedrado que ir por un camino de menor tiempo de recorrido"
+              maxIntervalValue="Prefiero ir por un camino que no esté empedrado antes que ir por un camino de menor tiempo de recorrido"
+              maxValue="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por un camino de menor tiempo de recorrido"
+              mark3="Camino que no esté empedrado"
+            />
+          ) : (
+            <div />
+          )}
+          {length && time ? (
+            <DiscreteSlider
+              onChange={setLengthTime}
+              title="Comparación entre ir por un camino de menor distancia e ir por un camino de menor tiempo de recorrido"
+              mark1="Camino de menor tiempo de recorrido"
+              minValue="Prefiero ampliamente ir por un camino de menor tiempo de recorrido antes que ir por un camino de menor distancia"
+              minIntervalValue="Prefiero ir por un camino de menor tiempo de recorrido antes que ir por un camino de menor distancia"
+              mark2="Me da igual"
+              neutralValue="Me da igual ir por un camino de menor distancia que ir por un camino de menor tiempo de recorrido"
+              maxIntervalValue="Prefiero ir por un camino de menor distancia antes que ir por un camino de menor tiempo de recorrido"
+              maxValue="Prefiero ampliamente ir por un camino de menor distancia antes que ir por un camino de menor tiempo de recorrido"
+              mark3="Camino de menor distancia"
+            />
+          ) : (
+            <div />
+          )}
+          <Box m={1}>
+            <Button
+              variant="outlined"
+              onClick={onClickComparisons}
+              className={classes.button}
+            >
+              Enviar
+            </Button>
+          </Box>
+          <CustomSnackBar
+            open={openSnackBar}
+            setOpenSnackBar={setOpenSnackBar}
+            errorMessage="Las comparaciones no son consistentes. Recomendación: revisar si se da un caso donde se dice que el criterio A es más importante que el B, el criterio A es menos importante que el C y el criterio B es más importante que el C"
+            severity="error"
+          />
+        </Box>
+      </Stack>
     </Box>
   );
 }

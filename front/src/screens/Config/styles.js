@@ -27,15 +27,21 @@ const useStyles = makeStyles((theme) => ({
   },
   boxOut: {
     backgroundColor: "#f5f6f7",
-    minHeight: "100vh",
-    padding: "1rem"
+    padding: "1rem",
   },
-  boxIn: {
+  boxIn1: {
+    margin: "4px 8px",
+    borderRadius: "16px",
+    boxShadow: "rgb(0 0 0 / 10%) 0px 2px 12px 0px",
+    padding: "12px",
+    maxHeight: "220px"
+  },
+  boxIn2: {
     margin: "16px 8px",
     borderRadius: "16px",
     boxShadow: "rgb(0 0 0 / 10%) 0px 2px 12px 0px",
     padding: "12px",
-    minHeight: "200px"
+    minWidth: "1400px"
   }
 }));
 
