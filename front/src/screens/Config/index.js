@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { Typography, Container, Stack, Button, Box } from "@mui/material";
+import { Typography, Stack, Button, Box } from "@mui/material";
 import useStyles from "./styles";
 import DiscreteSlider from "../../components/DiscreteSlider";
 import CriteriaForm from "../../components/CriteriaForm";
@@ -61,11 +61,11 @@ export default function Config({ configSuccess }) {
   ]);
 
   return (
-    <Container className={classes.container}>
+    <Box className={classes.boxOut}>
       <CustomAppBar title="Configuración" icon={<BuildIcon />} />
 
-      <Box m={2} pt={1}>
-        <Stack direction="row" spacing={1}>
+      <Box className={classes.boxIn}>
+        <Stack direction="row">
           <Typography
             variant="h5"
             gutterBottom
@@ -74,7 +74,9 @@ export default function Config({ configSuccess }) {
           >
             Criterios a tener en cuenta
           </Typography>
-          <CustomDialog content="Se busca seleccionar qué criterios tener en cuenta para calcular un camino." />
+          <CustomDialog
+            content="Se busca seleccionar qué criterios tener en cuenta para calcular un camino."
+          />
         </Stack>
         <CriteriaForm
           setCycleway={setCycleway}
@@ -82,7 +84,9 @@ export default function Config({ configSuccess }) {
           setLength={setLength}
           setTime={setTime}
         />
-        <Stack direction="row" spacing={1}>
+      </Box>
+      <Box className={classes.boxIn}>
+        <Stack direction="row">
           <Typography
             variant="h5"
             gutterBottom
@@ -205,6 +209,6 @@ export default function Config({ configSuccess }) {
           severity="error"
         />
       </Box>
-    </Container>
+    </Box>
   );
 }

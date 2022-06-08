@@ -7,10 +7,14 @@ import {
   DialogContentText,
   DialogTitle,
   IconButton,
+  Box,
 } from "@mui/material";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
+import useStyles from "./styles";
 
-export default function AlertDialog({content}) {
+export default function AlertDialog({ content }) {
+  const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -23,7 +27,7 @@ export default function AlertDialog({content}) {
 
   return (
     <div>
-      <IconButton onClick={handleClickOpen}>
+      <IconButton onClick={handleClickOpen} className={classes.customDialog}>
         <QuestionMarkIcon />
       </IconButton>
       <Dialog

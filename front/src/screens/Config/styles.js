@@ -1,4 +1,4 @@
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from "@mui/styles";
 import teal from "@mui/material/colors/teal";
 
 const useStyles = makeStyles((theme) => ({
@@ -24,8 +24,19 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
-    width: "500px",
   },
+  boxOut: {
+    backgroundColor: "#f5f6f7",
+    minHeight: "100vh",
+    padding: "1rem"
+  },
+  boxIn: {
+    margin: "16px 8px",
+    borderRadius: "16px",
+    boxShadow: "rgb(0 0 0 / 10%) 0px 2px 12px 0px",
+    padding: "12px",
+    minHeight: "200px"
+  }
 }));
 
 export default useStyles;
