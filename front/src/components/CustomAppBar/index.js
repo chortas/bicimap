@@ -17,7 +17,9 @@ export default function CustomAppBar({ title, icon }) {
             <Typography variant="h6" noWrap style={{ color: "#ffffff" }}>
               {title}
             </Typography>
-            {icon}
+            <Box m={2}>
+              {icon}
+            </Box>
           </Stack>
         </Toolbar>
       </AppBar>

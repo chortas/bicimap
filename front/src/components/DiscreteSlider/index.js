@@ -1,5 +1,7 @@
 import * as React from "react";
 import { Box, Slider, Typography, Container } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/styles";
 import useStyles from "./styles";
 
 function marks(mark1, mark2, mark3) {
@@ -66,38 +68,39 @@ export default function DiscreteSlider({
       >
         {title}
       </Typography>
-      <Box sx={{ width: 700 }} m={1} pt = {1}>
-        <Slider
-          valueLabelDisplay="auto"
-          valueLabelFormat={(value) => {
-            return (
-              <div style={{ textAlign: "center" }}>
-                {renderToolTip(
-                  value,
-                  minValue,
-                  minIntervalValue,
-                  neutralValue,
-                  maxIntervalValue,
-                  maxValue
-                )}
-              </div>
-            );
-          }}
-          track={false}
-          defaultValue={1}
-          onChange={(event) =>
-            onChange(
-              event.target.value > 0
-                ? event.target.value
-                : 1 / Math.abs(event.target.value)
-            )
-          }
-          step={1}
-          marks={marks(mark1, mark2, mark3)}
-          min={-9}
-          max={9}
-          width={10}
-        />
+      <Box sx={{ width: 700 }} m={1} pt={1}>
+          <Slider
+            className={classes.slider}
+            valueLabelDisplay="auto"
+            valueLabelFormat={(value) => {
+              return (
+                <div style={{ textAlign: "center" }}>
+                  {renderToolTip(
+                    value,
+                    minValue,
+                    minIntervalValue,
+                    neutralValue,
+                    maxIntervalValue,
+                    maxValue
+                  )}
+                </div>
+              );
+            }}
+            track={false}
+            defaultValue={1}
+            onChange={(event) =>
+              onChange(
+                event.target.value > 0
+                  ? event.target.value
+                  : 1 / Math.abs(event.target.value)
+              )
+            }
+            step={1}
+            marks={marks(mark1, mark2, mark3)}
+            min={-9}
+            max={9}
+            width={10}
+          />
       </Box>
     </Container>
   );

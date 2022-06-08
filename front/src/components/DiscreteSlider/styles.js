@@ -11,7 +11,12 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "10px",
     width: "15px",
     height: "15px",
-    marginBottom: theme.spacing(15)
+    marginBottom: theme.spacing(15),
+  },
+  slider: {
+    "&.MuiSlider-root": {
+      color: "#4db6ac",
+    },
   },
 }));
 
