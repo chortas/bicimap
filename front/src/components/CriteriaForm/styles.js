@@ -5,6 +5,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(3),
   },
+  checkbox: {
+    color: "#4db6ac !important",
+  },
 }));
 
 export default useStyles;

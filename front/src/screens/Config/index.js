@@ -189,13 +189,15 @@ export default function Config({ configSuccess }) {
         ) : (
           <div />
         )}
-        <Button
-          variant="outlined"
-          onClick={onClickComparisons}
-          className={classes.button}
-        >
-          Enviar
-        </Button>
+        <Box m={1}>
+          <Button
+            variant="outlined"
+            onClick={onClickComparisons}
+            className={classes.button}
+          >
+            Enviar
+          </Button>
+        </Box>
         <CustomSnackBar
           open={openSnackBar}
           setOpenSnackBar={setOpenSnackBar}

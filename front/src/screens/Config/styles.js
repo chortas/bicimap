@@ -1,4 +1,5 @@
 import { makeStyles } from '@mui/styles';
+import teal from "@mui/material/colors/teal";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -11,6 +12,12 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginBottom: theme.spacing(3),
+    color: "#ffff !important",
+    backgroundColor: "#4db6ac !important",
+    borderColor: "#4db6ac !important",
+    "&:hover": {
+      backgroundColor: teal[300],
+    },
   },
   container: {
     marginTop: theme.spacing(2),

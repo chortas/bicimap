@@ -17,6 +17,7 @@ export default function CriteriaForm({
       <FormControlLabel
         control={
           <Checkbox
+            className={classes.checkbox}
             defaultChecked
             onChange={(event) => setCycleway(event.target.checked)}
           />
@@ -26,6 +27,7 @@ export default function CriteriaForm({
       <FormControlLabel
         control={
           <Checkbox
+            className={classes.checkbox}
             defaultChecked
             onChange={(event) => setSurface(event.target.checked)}
           />
@@ -35,6 +37,7 @@ export default function CriteriaForm({
       <FormControlLabel
         control={
           <Checkbox
+            className={classes.checkbox}
             defaultChecked
             onChange={(event) => setLength(event.target.checked)}
           />
@@ -44,6 +47,7 @@ export default function CriteriaForm({
       <FormControlLabel
         control={
           <Checkbox
+            className={classes.checkbox}
             defaultChecked
             onChange={(event) => setTime(event.target.checked)}
           />
