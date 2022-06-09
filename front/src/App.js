@@ -21,17 +21,17 @@ export default function App() {
     <BrowserRouter>
       <Switch>
         <PublicRoute
-          path="/config"
+          path="/bicimap"
           component={() => Config({ configSuccess })}
           isConfigSent={isConfigSent}
         />
         <PrivateRoute
-          key="/home"
-          path="/home"
+          key="/bicimap/home"
+          path="/bicimap/home"
           component={() => Home()}
           isConfigSent={isConfigSent}
         />
-        <Redirect to="/home" />
+        <Redirect to="/bicimap/home" />
       </Switch>
     </BrowserRouter>
   );
