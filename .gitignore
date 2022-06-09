@@ -1,7 +1,6 @@
 .ipynb_checkpoints/
 cache/
 images/
-*.html
 *.txt
 __pycache__/
 front/node_modules
