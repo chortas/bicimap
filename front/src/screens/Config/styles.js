@@ -4,7 +4,7 @@ import teal from "@mui/material/colors/teal";
 const useStyles = makeStyles((theme) => ({
   title: {
     marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(7),
+    marginBottom: theme.spacing(7)
   },
   comparisons: {
     marginTop: theme.spacing(1),
@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
   },
   boxOut: {
     backgroundColor: "#f5f6f7",
-    padding: "1rem",
+    minHeight: "95vh",
   },
   boxIn1: {
-    margin: "4px 8px",
+    margin: "2px 30px",
     borderRadius: "16px",
     boxShadow: "rgb(0 0 0 / 10%) 0px 2px 12px 0px",
     padding: "12px",

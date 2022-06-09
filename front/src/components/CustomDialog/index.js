@@ -7,7 +7,6 @@ import {
   DialogContentText,
   DialogTitle,
   IconButton,
-  Box,
 } from "@mui/material";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import useStyles from "./styles";
