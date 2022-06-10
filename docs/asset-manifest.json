@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/bicimap/static/css/main.073c9b0a.css",
-    "main.js": "/bicimap/static/js/main.b83df112.js",
+    "main.js": "/bicimap/static/js/main.3a9fcfdb.js",
     "index.html": "/bicimap/index.html",
     "main.073c9b0a.css.map": "/bicimap/static/css/main.073c9b0a.css.map",
-    "main.b83df112.js.map": "/bicimap/static/js/main.b83df112.js.map"
+    "main.3a9fcfdb.js.map": "/bicimap/static/js/main.3a9fcfdb.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.b83df112.js"
+    "static/js/main.3a9fcfdb.js"
   ]
 }
