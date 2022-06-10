@@ -1,13 +1,13 @@
 import React, { useState, useCallback } from "react";
-import { Button, Box, CircularProgress } from "@mui/material";
+import { Button, Box, CircularProgress, IconButton } from "@mui/material";
 import CustomInput from "../../components/CustomInput";
 import { getPaths } from "../../services/BiciMapService";
 import CustomSnackBar from "../../components/CustomSnackBar";
 import useStyles from "./styles";
 import CustomAppBar from "../../components/CustomAppBar";
-import HomeIcon from "@mui/icons-material/Home";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
-export default function Home() {
+export default function Home({ setConfigSuccess }) {
   const classes = useStyles();
 
   const [points, setPoints] = useState([]);
@@ -18,7 +18,6 @@ export default function Home() {
   const [directionAsked, setDirectionAsked] = useState(false);
   const [loadingPath, setLoadingPath] = useState(false);
 
-  //const [stops, setStops] = useState([]);
   const [stops, setStops] = useState(0);
 
   const onClickPath = useCallback(async () => {
@@ -54,9 +53,20 @@ export default function Home() {
     [points]
   );
 
+  const onClickBack = useCallback(async () => {
+    setConfigSuccess(false);
+  }, [setConfigSuccess]);
+
   return (
     <Box className={classes.boxOut}>
-      <CustomAppBar title="BiciMap" icon={<HomeIcon />} />
+      <CustomAppBar
+        title="BiciMap"
+        element={
+          <IconButton style={{ color: "#ffff" }} onClick={onClickBack}>
+            <ArrowBackIosNewIcon />
+          </IconButton>
+        }
+      />
       <CustomInput
         key={0}
         idx={0}

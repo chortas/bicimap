@@ -62,7 +62,7 @@ export default function Config({ setConfigSuccess }) {
 
   return (
     <Box className={classes.boxOut}>
-      <CustomAppBar title="Configuración" icon={<BuildIcon />} />
+      <CustomAppBar title="Configuración" element={<BuildIcon />} />
 
       <Stack direction="row" spacing={8}>
         <Box className={classes.boxIn1}>

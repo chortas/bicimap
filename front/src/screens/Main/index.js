@@ -6,7 +6,7 @@ export default function Main() {
   const [configSuccess, setConfigSuccess] = useState(false);
 
   return configSuccess ? (
-    <Home />
+    <Home setConfigSuccess={setConfigSuccess} />
   ) : (
     <Config setConfigSuccess={setConfigSuccess} />
   );

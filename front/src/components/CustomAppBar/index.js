@@ -1,8 +1,14 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Box, Stack } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Box,
+  Stack,
+} from "@mui/material";
 import useStyles from "./styles";
 
-export default function CustomAppBar({ title, icon }) {
+export default function CustomAppBar({ title, element }) {
   const classes = useStyles();
 
   return (
@@ -17,9 +23,7 @@ export default function CustomAppBar({ title, icon }) {
             <Typography variant="h6" noWrap style={{ color: "#ffffff" }}>
               {title}
             </Typography>
-            <Box m={2}>
-              {icon}
-            </Box>
+            <Box m={2}>{element}</Box>
           </Stack>
         </Toolbar>
       </AppBar>
