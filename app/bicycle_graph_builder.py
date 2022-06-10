@@ -1,4 +1,5 @@
 import osmnx as ox
+import os
 from graph_builder import *
 
 PLACE = 'Autonomous City of Buenos Aires, Argentina'
@@ -12,8 +13,15 @@ class BicycleGraphBuilder(GraphBuilder):
   """
   def __init__(self):
     self.configure()
-    graph = self.__create_graph()
+    graph = self.__load_graph()
     GraphBuilder.__init__(self, graph)
 
+  def __load_graph(self):
+      heroku = 'HEROKU' in os.environ
+      graph = self.__create_graph() if heroku else ox.load_graphml('bycycle_graph.graphml')
+      return graph
+
   def __create_graph(self):
-      return ox.graph.graph_from_place(PLACE, network_type=NETWORK_TYPE, simplify=False, retain_all=True)
+    graph = ox.graph.graph_from_place(PLACE, network_type=NETWORK_TYPE, simplify=False, retain_all=True)
+    #ox.save_graphml(graph, 'bycycle_graph.graphml')
+    return graph

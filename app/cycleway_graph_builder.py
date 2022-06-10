@@ -1,3 +1,4 @@
+import os
 import osmnx as ox
 from graph_builder import *
 import networkx as nx
@@ -15,12 +16,19 @@ class CyclewayGraphBuilder(GraphBuilder):
   """
   def __init__(self):
     self.configure()
-    graph = self.__create_graph()
+    graph = self.__load_graph()
     GraphBuilder.__init__(self, graph)
+
+  def __load_graph(self):
+    heroku = 'HEROKU' in os.environ
+    graph = self.__create_graph() if heroku else ox.load_graphml('cycleway_graph.graphml')
+    return graph
 
   def __create_graph(self):
     bicycle_graph = ox.graph.graph_from_place(PLACE, network_type=NETWORK_TYPE, simplify=False, custom_filter=BICYCLE_CUSTOM_FILTER, 
     retain_all=True)
     highway_graph = ox.graph.graph_from_place(PLACE, network_type=NETWORK_TYPE, simplify=False, custom_filter=HIGHWAY_CUSTOM_FILTER, 
     retain_all=True)
-    return nx.compose(bicycle_graph, highway_graph)
+    graph = nx.compose(bicycle_graph, highway_graph)
+    #ox.save_graphml(graph, 'cycleway_graph.graphml')
+    return graph

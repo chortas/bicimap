@@ -28,7 +28,6 @@ export default function Home() {
       setOpenSnackBar(true);
     } else {
       setPaths(response.data["paths"]);
-      console.log(response.data["paths"]);
       setContentToRender(response.data["paths"][idxPath]);
       setDirectionAsked(true);
     }
@@ -36,9 +35,10 @@ export default function Home() {
   }, [points, idxPath]);
 
   const onClickOtherPath = useCallback(async () => {
-    setContentToRender(paths[idxPath]);
+    console.log(idxPath);
     const newIdxPath = idxPath === 1 ? 0 : 1;
     setIdxPath(newIdxPath);
+    setContentToRender(paths[newIdxPath]);
   }, [paths, idxPath]);
 
   const onClickStops = useCallback(async () => {

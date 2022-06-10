@@ -1,3 +1,4 @@
+import os
 import osmnx as ox
 from graph_builder import *
 
@@ -13,13 +14,20 @@ class SurfaceGraphBuilder(GraphBuilder):
   """
   def __init__(self):
     self.configure()
-    graph = self.__create_graph()
+    graph = self.__load_graph()
     self.__remove_streets_without_speed(graph)
     GraphBuilder.__init__(self, graph)
 
+  def __load_graph(self):
+    heroku = 'HEROKU' in os.environ
+    graph = self.__create_graph() if heroku else ox.load_graphml('surface_graph.graphml')
+    return graph
+
   def __create_graph(self):
-      return ox.graph.graph_from_place(PLACE, network_type=NETWORK_TYPE, simplify=False, custom_filter=SURFACE_CUSTOM_FILTER,
+    graph = ox.graph.graph_from_place(PLACE, network_type=NETWORK_TYPE, simplify=False, custom_filter=SURFACE_CUSTOM_FILTER,
     retain_all=True)
+    #ox.save_graphml(graph, 'surface_graph.graphml')
+    return graph
 
   def __remove_streets_without_speed(self, graph):
     edges_to_remove = []

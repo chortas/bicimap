@@ -5,6 +5,7 @@ from surface_graph_builder import *
 from bicycle_graph_builder import *
 from path_processor import *
 from criteria_comparator import *
+from itertools import groupby
 
 class GraphService(object):
     def __init__(self):
@@ -36,13 +37,16 @@ class GraphService(object):
         #print(f"First paths: {first_paths}")
         #print(f"Second paths: {second_paths}")
 
-        first_paths_flatten =  list(dict.fromkeys([item for sublist in first_paths for item in sublist]))
-        second_paths_flatten = list(dict.fromkeys([item for sublist in second_paths for item in sublist]))
+        first_paths_flatten_dup =  [item for sublist in first_paths for item in sublist]
+        second_paths_flatten_dup = [item for sublist in second_paths for item in sublist]
+
+        first_paths_flatten = [key for key, _group in groupby(first_paths_flatten_dup)]
+        second_paths_flatten = [key for key, _group in groupby(second_paths_flatten_dup)]
 
         #print(f"First paths flatten: {first_paths_flatten}")
         #print(f"Second paths flatten: {second_paths_flatten}")
 
-        return self.__paths_to_html([first_paths_flatten], all_markers)
+        return self.__paths_to_html([first_paths_flatten, second_paths_flatten], all_markers)
 
     def __get_paths(self, origin, destination):
         paths = self.path_processor.get_paths(origin, destination, self.criteria_comparator)
@@ -50,11 +54,13 @@ class GraphService(object):
         return paths, markers
       
     def __paths_to_html(self, paths, markers):
+        COLORS = ["#ff80ab", "#be4487", "#f08080", "#ac6ab9"]
         paths_html = []
-        for path in paths:
-          map_plot = ox.plot_route_folium(self.bicycle_graph, path, color="#ff80ab")
+        for index, path in enumerate(paths):
+          map_plot = ox.plot_route_folium(self.bicycle_graph, path, color=COLORS[index])
           for marker in markers:
             marker.add_to(map_plot)
           paths_html.append(map_plot._repr_html_())
+        
         return paths_html
         
