@@ -10,7 +10,7 @@ import { saveComparisons } from "../../services/BiciMapService";
 import { getComparisonBody } from "../../utils/comparison";
 import BuildIcon from "@mui/icons-material/Build";
 
-export default function Config({ configSuccess }) {
+export default function Config({ setConfigSuccess }) {
   const classes = useStyles();
 
   const [cycleway, setCycleway] = useState(true);
@@ -44,7 +44,7 @@ export default function Config({ configSuccess }) {
     if (response.status !== 201) {
       setOpenSnackBar(true);
     } else {
-      configSuccess();
+      setConfigSuccess(true);
     }
   }, [
     cycleway,
@@ -57,7 +57,7 @@ export default function Config({ configSuccess }) {
     surfaceLength,
     surfaceTime,
     lengthTime,
-    configSuccess,
+    setConfigSuccess
   ]);
 
   return (

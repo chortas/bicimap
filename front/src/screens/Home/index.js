@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { Container, Button, Box, CircularProgress } from "@mui/material";
+import { Button, Box, CircularProgress } from "@mui/material";
 import CustomInput from "../../components/CustomInput";
 import { getPaths } from "../../services/BiciMapService";
 import CustomSnackBar from "../../components/CustomSnackBar";
@@ -55,7 +55,7 @@ export default function Home() {
   );
 
   return (
-    <Container className={classes.container}>
+    <Box className={classes.boxOut}>
       <CustomAppBar title="BiciMap" icon={<HomeIcon />} />
       <CustomInput
         key={0}
@@ -115,6 +115,6 @@ export default function Home() {
       ) : (
         <div />
       )}
-    </Container>
+    </Box>
   );
 }

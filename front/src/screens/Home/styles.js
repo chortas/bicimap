@@ -2,7 +2,7 @@ import { makeStyles } from "@mui/styles";
 import teal from "@mui/material/colors/teal";
 
 const useStyles = makeStyles((theme) => ({
-  container: {
+  boxOut: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
     marginLeft: theme.spacing(2),
@@ -14,15 +14,15 @@ const useStyles = makeStyles((theme) => ({
     width: "500px",
   },
   button: {
-    color: "#ffff",
-    backgroundColor: "#4db6ac",
-    borderColor: "#4db6ac",
+    color: "#ffff !important",
+    backgroundColor: "#4db6ac !important",
+    borderColor: "#4db6ac !important",
     "&:hover": {
       backgroundColor: teal[300],
     },
   },
   circularProgress: {
-    color: teal[300],
+    color:  "#4db6ac !important",
   },
 }));
 
