@@ -1,8 +1,0 @@
-osmnx
-scikit-learn
-geopy
-folium
-ahpy
-pytest
-Flask
-flask-cors
