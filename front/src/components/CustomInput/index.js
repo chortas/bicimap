@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Stack, TextField, InputAdornment, IconButton, Box } from "@mui/material";
+import {
+  Stack,
+  TextField,
+  InputAdornment,
+  IconButton,
+  Box,
+} from "@mui/material";
 import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
 import AddIcon from "@mui/icons-material/Add";
 import useStyles from "./styles";
@@ -32,6 +38,7 @@ export default function CustomInput({ idx, content, setProperty, onClick }) {
             onClick();
             setShowButton(false);
           }}
+          className={classes.button}
         >
           <AddIcon />
         </IconButton>

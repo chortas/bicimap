@@ -54,10 +54,9 @@ class GraphService(object):
         return paths, markers
       
     def __paths_to_html(self, paths, markers):
-        COLORS = ["#ff80ab", "#be4487", "#f08080", "#ac6ab9"]
         paths_html = []
-        for index, path in enumerate(paths):
-          map_plot = ox.plot_route_folium(self.bicycle_graph, path, color=COLORS[index])
+        for path in paths:
+          map_plot = ox.plot_route_folium(self.bicycle_graph, path, color="#ff80ab")
           for marker in markers:
             marker.add_to(map_plot)
           paths_html.append(map_plot._repr_html_())
