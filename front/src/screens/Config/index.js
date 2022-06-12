@@ -155,7 +155,7 @@ export default function Config({ setConfigSuccess }) {
               neutralValue="Me da igual ir por un camino que no esté empedrado que ir por un camino de menor distancia"
               maxIntervalValue="Prefiero ir por un camino que no esté empedrado antes que ir por un camino de menor distancia"
               maxValue="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por un camino de menor distancia"
-              mark3="Camino que no esté empedrado"
+              mark3="Camino no empedrado"
             />
           ) : (
             <div />
@@ -171,7 +171,7 @@ export default function Config({ setConfigSuccess }) {
               neutralValue="Me da igual ir por un camino que no esté empedrado que ir por un camino de menor tiempo de recorrido"
               maxIntervalValue="Prefiero ir por un camino que no esté empedrado antes que ir por un camino de menor tiempo de recorrido"
               maxValue="Prefiero ampliamente ir por un camino que no esté empedrado antes que ir por un camino de menor tiempo de recorrido"
-              mark3="Camino que no esté empedrado"
+              mark3="Camino no empedrado"
             />
           ) : (
             <div />

@@ -16,9 +16,8 @@ export default function CustomInput({ idx, content, setProperty, onClick }) {
 
   return (
     <Stack direction="row" spacing={1} className={classes.stack}>
-      <Box>
+      <Box width={400}>
         <TextField
-          className={classes.textField}
           label={content}
           InputProps={{
             startAdornment: (

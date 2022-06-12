@@ -8,14 +8,14 @@
 make install
 ```
 
-## Correr programa
+## Correr aplicación
 
 ```
-python3 router.py
+make app
 ```
 
-## Correr tests
+## Correr frontend
 
 ```
-make test
+make front
 ```

@@ -6,9 +6,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     marginLeft: theme.spacing(2),
   },
-  textField: {
-    width: "1000",
-  },
   button: {
     color: "#e91e63 !important"
 }

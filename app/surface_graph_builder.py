@@ -1,5 +1,6 @@
 import os
 import osmnx as ox
+import networkx as nx
 from graph_builder import *
 
 PLACE = 'Autonomous City of Buenos Aires, Argentina'
@@ -12,21 +13,22 @@ class SurfaceGraphBuilder(GraphBuilder):
   - nodes: each corner of the city
   - edges: they will exist if it's posible to get from a corner to the other in bike and it is pavimented
   """
-  def __init__(self):
+  def __init__(self, cycleway_graph):
     self.configure()
-    graph = self.__load_graph()
+    graph = self.__load_graph(cycleway_graph)
     self.__remove_streets_without_speed(graph)
     GraphBuilder.__init__(self, graph)
 
-  def __load_graph(self):
+  def __load_graph(self, cycleway_graph):
     heroku = 'HEROKU' in os.environ
-    graph = self.__create_graph() if heroku else ox.load_graphml('surface_graph.graphml')
+    graph = self.__create_graph(cycleway_graph) if heroku else ox.load_graphml('surface_graph.graphml')
     return graph
 
-  def __create_graph(self):
-    graph = ox.graph.graph_from_place(PLACE, network_type=NETWORK_TYPE, simplify=False, custom_filter=SURFACE_CUSTOM_FILTER,
+  def __create_graph(self, cycleway_graph):
+    surface_graph = ox.graph.graph_from_place(PLACE, network_type=NETWORK_TYPE, simplify=False, custom_filter=SURFACE_CUSTOM_FILTER,
     retain_all=True)
-    #ox.save_graphml(graph, 'surface_graph.graphml')
+    graph = nx.compose(surface_graph, cycleway_graph)
+    ox.save_graphml(graph, 'surface_graph.graphml')
     return graph
 
   def __remove_streets_without_speed(self, graph):

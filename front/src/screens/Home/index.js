@@ -22,19 +22,20 @@ export default function Home({ setConfigSuccess }) {
 
   const onClickPath = useCallback(async () => {
     setLoadingPath(true);
+    setIdxPath(0);
+    console.log(idxPath);
     const response = await getPaths(points);
     if (response.status !== 200) {
       setOpenSnackBar(true);
     } else {
       setPaths(response.data["paths"]);
-      setContentToRender(response.data["paths"][idxPath]);
+      setContentToRender(response.data["paths"][0]);
       setDirectionAsked(true);
     }
     setLoadingPath(false);
   }, [points, idxPath]);
 
   const onClickOtherPath = useCallback(async () => {
-    console.log(idxPath);
     const newIdxPath = idxPath === 1 ? 0 : 1;
     setIdxPath(newIdxPath);
     setContentToRender(paths[newIdxPath]);

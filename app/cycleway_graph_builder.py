@@ -16,8 +16,8 @@ class CyclewayGraphBuilder(GraphBuilder):
   """
   def __init__(self):
     self.configure()
-    graph = self.__load_graph()
-    GraphBuilder.__init__(self, graph)
+    self.graph = self.__load_graph()
+    GraphBuilder.__init__(self, self.graph)
 
   def __load_graph(self):
     heroku = 'HEROKU' in os.environ

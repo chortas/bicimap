@@ -11,7 +11,7 @@ class GraphService(object):
     def __init__(self):
       self.bicycle_graph = BicycleGraphBuilder().build()
       cycleway_graph = CyclewayGraphBuilder().build()
-      surface_graph = SurfaceGraphBuilder().build()
+      surface_graph = SurfaceGraphBuilder(cycleway_graph).build()
       self.path_processor = PathProcessor(self.bicycle_graph, cycleway_graph, surface_graph)
       self.criteria_comparator = CriteriaComparator()
 
