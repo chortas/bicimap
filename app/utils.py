@@ -1,8 +1,8 @@
 from itertools import islice, combinations
 from typing import Dict, List, Tuple
 from geopy.geocoders import Nominatim
-import osmnx as ox
 import networkx as nx
+from math import ceil
 
 def k_shortest_paths(G, source, target, k, weight=None) -> List[List[int]]:
   return list(islice(nx.shortest_simple_paths(G, source, target, weight=weight), k))
@@ -39,3 +39,8 @@ def process_comparisons(graph, routes, function, parameter=None) -> Dict[Tuple[i
     comparisons[tuple(pair)] = result
 
   return comparisons
+
+def get_limit(n_paths):
+  while (n_paths > 9):
+    n_paths = ceil(n_paths / 9)
+  return n_paths

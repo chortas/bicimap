@@ -36,12 +36,16 @@ class PathProcessor:
     print("About to obtain paths...")
     shortest_routes = k_shortest_paths(graph_aux, origin_node, dest_node, N_PATHS, weight=optimizer)
 
+    print(f"About to process {len(shortest_routes)} paths...")
+
     n = criteria_comparator.get_max_IC()
     best_routes = self.__get_best_route(shortest_routes, n, criteria_comparator)
-    while (len(best_routes) != 2):
+    limit = get_limit(N_PATHS)
+    print(f"Limit: {limit}")
+    while (len(best_routes) != limit):
       best_routes = self.__get_best_route(best_routes, n, criteria_comparator)
 
-    return self.__sort_best_routes(best_routes, criteria_comparator, 2) # TODO: cambiar para entrega de verdad
+    return self.__sort_best_routes(best_routes, criteria_comparator, limit)
 
   def get_markers(self):
     return (self.start_marker, self.end_marker)

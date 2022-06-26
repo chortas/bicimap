@@ -1,8 +1,7 @@
 import { create } from "apisauce";
 
 const api = create({
-  //baseURL: "https://bicimap.herokuapp.com/",
-  baseURL: "http://192.168.0.164:5000/"
+  baseURL: "http://localhost:5000/"
 });
 
 export const saveComparisons = (body) => api.post("/comparisons", body);
