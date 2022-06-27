@@ -19,8 +19,8 @@ class PathProcessor:
 
     # Using bicycle_graph since it's the most complete graph
     # It should always be possible to obtain a path
-    origin_node = ox.get_nearest_node(self.bicycle_graph, origin_location_coordinates)
-    dest_node = ox.get_nearest_node(self.bicycle_graph, dest_location_coordinates)
+    origin_node = ox.nearest_nodes(self.bicycle_graph, origin_location_coordinates[1], origin_location_coordinates[0])
+    dest_node = ox.nearest_nodes(self.bicycle_graph, dest_location_coordinates[1], dest_location_coordinates[0])
 
     self.start_marker = folium.Marker(
             location = origin_location_coordinates,
@@ -33,7 +33,16 @@ class PathProcessor:
             icon = folium.Icon(color='beige'))
 
     graph_aux = nx.DiGraph(self.bicycle_graph)
-    print("About to obtain paths...")
+
+    if origin_node not in graph_aux or dest_node not in graph_aux:
+      print("Point is not in graph")
+      raise Exception("Change points")
+
+    else:
+      result = shortest_path(graph_aux, origin_node, dest_node, weight=optimizer)
+      print(f"Everything ok: {result}")
+
+    print(f"About to obtain paths from {origin_node} to {dest_node}...")
     shortest_routes = k_shortest_paths(graph_aux, origin_node, dest_node, N_PATHS, weight=optimizer)
 
     print(f"About to process {len(shortest_routes)} paths...")
@@ -43,6 +52,9 @@ class PathProcessor:
     limit = get_limit(N_PATHS)
     print(f"Limit: {limit}")
     while (len(best_routes) != limit):
+      if (len(best_routes) < limit):
+        print("This shouldn't happen")
+        raise Exception("Change points")
       best_routes = self.__get_best_route(best_routes, n, criteria_comparator)
 
     return self.__sort_best_routes(best_routes, criteria_comparator, limit)

@@ -7,6 +7,9 @@ from math import ceil
 def k_shortest_paths(G, source, target, k, weight=None) -> List[List[int]]:
   return list(islice(nx.shortest_simple_paths(G, source, target, weight=weight), k))
 
+def shortest_path(G, source, target, weight=None):
+  return nx.shortest_path(G, source, target, weight=weight)
+
 def get_coordinates(location):
   locator = Nominatim(user_agent = "BiciMap")
   location_geocoded = locator.geocode(location)
